@@ -1,0 +1,3145 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="陈若尘的个人成长主页：学习记录、技能与项目作品。">
+  <meta name="author" content="陈若尘">
+  <title>关于我 | 陈若尘的成长主页</title>
+  <script>
+    (function () {
+      try {
+        var forced = new URLSearchParams(window.location.search).get('theme');
+        if (forced === 'light' || forced === 'dark') {
+          document.documentElement.setAttribute('data-theme', forced);
+          return;
+        }
+        var saved = localStorage.getItem('gt-theme');
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (saved === 'dark' || (!saved && prefersDark)) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      } catch (err) { /* 忽略 */ }
+    })();
+  </script>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230f9d8f'/%3E%3Ctext x='32' y='45' font-size='38' font-family='sans-serif' text-anchor='middle' fill='%23ffffff'%3EC%3C/text%3E%3C/svg%3E">
+  <style>
+/* =========================================================
+   陈若尘的成长主页 · 全站样式
+   原生 CSS，无框架、无外部资源
+   ========================================================= */
+
+:root {
+  --bg: #f5f8fb;
+  --bg-alt: #edf3f8;
+  --surface: #ffffff;
+  --surface-2: #f8fafc;
+  --text: #0f1b2d;
+  --text-soft: #41536b;
+  --muted: #6b7d95;
+  --line: #dfe7f0;
+  --brand: #0f9d8f;
+  --brand-strong: #0b7f74;
+  --blue: #2563eb;
+  --grad: linear-gradient(120deg, #0f9d8f 0%, #0ea5e9 55%, #2563eb 100%);
+  --shadow: 0 14px 34px rgba(15, 27, 45, 0.08);
+  --shadow-sm: 0 4px 14px rgba(15, 27, 45, 0.05);
+  --radius: 18px;
+  --radius-sm: 12px;
+  --code-bg: #0f172a;
+  --code-text: #e2e8f0;
+  --header-bg: rgba(245, 248, 251, 0.82);
+  --focus: #0ea5e9;
+  --max-width: 1120px;
+}
+
+[data-theme="dark"] {
+  --bg: #0a1220;
+  --bg-alt: #0e1a2c;
+  --surface: #111d31;
+  --surface-2: #0f1a2c;
+  --text: #e9f0fa;
+  --text-soft: #b9c7da;
+  --muted: #8ea2bb;
+  --line: #22314a;
+  --brand: #2dd4bf;
+  --brand-strong: #5eead4;
+  --blue: #60a5fa;
+  --grad: linear-gradient(120deg, #2dd4bf 0%, #38bdf8 55%, #60a5fa 100%);
+  --shadow: 0 14px 34px rgba(0, 0, 0, 0.38);
+  --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.28);
+  --code-bg: #060d19;
+  --code-text: #dbe7f5;
+  --header-bg: rgba(10, 18, 32, 0.84);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
+  background: var(--bg);
+  font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 16px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(46rem 30rem at 8% -8%, rgba(14, 165, 233, 0.1), transparent 62%),
+    radial-gradient(38rem 26rem at 100% 8%, rgba(15, 157, 143, 0.1), transparent 60%),
+    radial-gradient(30rem 24rem at 52% 112%, rgba(37, 99, 235, 0.06), transparent 65%);
+}
+
+[data-theme="dark"] body::before {
+  background:
+    radial-gradient(46rem 30rem at 8% -8%, rgba(14, 165, 233, 0.14), transparent 62%),
+    radial-gradient(38rem 26rem at 100% 8%, rgba(45, 212, 191, 0.1), transparent 60%),
+    radial-gradient(30rem 24rem at 52% 112%, rgba(37, 99, 235, 0.1), transparent 65%);
+}
+
+img,
+svg {
+  max-width: 100%;
+}
+
+a {
+  color: var(--brand-strong);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: var(--blue);
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.3;
+  margin: 0 0 0.5em;
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+code {
+  font-family: "Cascadia Code", Consolas, "Courier New", monospace;
+  font-size: 0.9em;
+  padding: 0.1em 0.35em;
+  border-radius: 5px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+}
+
+pre code {
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: inherit;
+}
+
+.container {
+  width: min(var(--max-width), calc(100% - 48px));
+  margin-inline: auto;
+}
+
+.container.narrow {
+  width: min(820px, calc(100% - 48px));
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 16px;
+  z-index: 200;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: var(--text);
+  color: var(--surface);
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
+/* ---------- 顶部导航 ---------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--header-bg);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  min-height: 68px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.brand:hover {
+  color: var(--text);
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 11px;
+  background: var(--grad);
+  color: #fff;
+  font-size: 18px;
+  font-weight: 800;
+  box-shadow: 0 6px 16px rgba(15, 157, 143, 0.28);
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+  font-size: 16px;
+}
+
+.brand-sub {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.12em;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.site-nav a {
+  position: relative;
+  padding: 8px 13px;
+  border-radius: 10px;
+  color: var(--text-soft);
+  font-size: 15px;
+  text-decoration: none;
+  transition: color 0.18s ease, background-color 0.18s ease;
+}
+
+.site-nav a:hover {
+  color: var(--text);
+  background: var(--surface-2);
+}
+
+.site-nav a.is-active {
+  color: var(--brand-strong);
+  background: color-mix(in srgb, var(--brand) 12%, transparent);
+  font-weight: 700;
+}
+
+[data-theme="dark"] .site-nav a.is-active {
+  color: var(--brand);
+  background: rgba(45, 212, 191, 0.12);
+}
+
+.theme-toggle {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  margin-left: 6px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--text-soft);
+  cursor: pointer;
+  transition: color 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+}
+
+.theme-toggle:hover {
+  color: var(--brand-strong);
+  border-color: var(--brand);
+  transform: rotate(-12deg);
+}
+
+.theme-toggle svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.theme-toggle .icon-sun {
+  display: none;
+}
+
+[data-theme="dark"] .theme-toggle .icon-sun {
+  display: block;
+}
+
+[data-theme="dark"] .theme-toggle .icon-moon {
+  display: none;
+}
+
+.nav-toggle {
+  display: none;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  cursor: pointer;
+}
+
+.nav-toggle-lines,
+.nav-toggle-lines::before,
+.nav-toggle-lines::after {
+  display: block;
+  width: 20px;
+  height: 2px;
+  margin-inline: auto;
+  border-radius: 2px;
+  background: var(--text);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.nav-toggle-lines::before,
+.nav-toggle-lines::after {
+  content: "";
+  position: relative;
+}
+
+.nav-toggle-lines::before {
+  top: -6px;
+}
+
+.nav-toggle-lines::after {
+  top: 4px;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-lines {
+  background: transparent;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-lines::before {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-lines::after {
+  transform: translateY(-4px) rotate(-45deg);
+}
+
+/* ---------- 通用区块与卡片 ---------- */
+
+.section {
+  padding: 72px 0;
+}
+
+.section-tight {
+  padding: 52px 0;
+}
+
+.section-alt {
+  background: var(--bg-alt);
+  border-block: 1px solid var(--line);
+}
+
+.section-head {
+  max-width: 720px;
+  margin-bottom: 36px;
+}
+
+.section-kicker {
+  margin-bottom: 10px;
+  color: var(--brand-strong);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+}
+
+.section-head h2 {
+  font-size: clamp(1.5rem, 2.6vw, 2.05rem);
+}
+
+.section-desc {
+  color: var(--text-soft);
+  margin-bottom: 0;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  padding: 26px;
+}
+
+.grid-2,
+.grid-3 {
+  display: grid;
+  gap: 20px;
+}
+
+.grid-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.card-title {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 1.06rem;
+  margin-bottom: 10px;
+}
+
+.card-icon {
+  font-size: 1.15rem;
+}
+
+.card p:last-child {
+  margin-bottom: 0;
+}
+
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 18px 0;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 11px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--brand) 11%, transparent);
+  border: 1px solid color-mix(in srgb, var(--brand) 24%, transparent);
+  color: var(--brand-strong);
+  font-size: 12.5px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.tag-soft {
+  background: var(--surface-2);
+  border-color: var(--line);
+  color: var(--muted);
+}
+
+[data-theme="dark"] .tag {
+  background: rgba(45, 212, 191, 0.1);
+  border-color: rgba(45, 212, 191, 0.22);
+  color: var(--brand);
+}
+
+[data-theme="dark"] .tag-soft {
+  background: var(--surface-2);
+  border-color: var(--line);
+  color: var(--muted);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 22px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease, color 0.18s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: var(--grad);
+  color: #fff;
+  box-shadow: 0 8px 22px rgba(15, 157, 143, 0.28);
+}
+
+.btn-primary:hover {
+  color: #fff;
+  box-shadow: 0 12px 26px rgba(15, 157, 143, 0.36);
+}
+
+.btn-ghost {
+  background: var(--surface);
+  border-color: var(--line);
+  color: var(--text);
+}
+
+.btn-ghost:hover {
+  color: var(--brand-strong);
+  border-color: var(--brand);
+}
+
+.btn-light {
+  background: #fff;
+  color: #0b5c54;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.16);
+}
+
+.btn-light:hover {
+  color: #0b5c54;
+}
+
+.text-link {
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.text-link:hover {
+  text-decoration: underline;
+}
+
+.center-actions {
+  margin-top: 30px;
+  text-align: center;
+}
+
+/* ---------- 首页 ---------- */
+
+.hero {
+  padding: 64px 0 76px;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: 48px;
+  align-items: center;
+}
+
+.eyebrow {
+  margin-bottom: 18px;
+  color: var(--brand-strong);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.hero-title {
+  margin-bottom: 18px;
+  font-size: clamp(2.3rem, 5.2vw, 3.6rem);
+  letter-spacing: -0.02em;
+}
+
+.gradient-text {
+  display: inline-block;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  padding-right: 0.06em;
+}
+
+.hero-lead {
+  max-width: 34em;
+  color: var(--text-soft);
+  font-size: 1.06rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.hero-card {
+  position: relative;
+  overflow: hidden;
+  padding: 28px;
+}
+
+.hero-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 4px;
+  background: var(--grad);
+}
+
+.status-dot-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.status-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.16);
+}
+
+.hero-card-title {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+.hero-card-text {
+  color: var(--text-soft);
+  font-size: 0.95rem;
+}
+
+.mini-facts {
+  display: grid;
+  gap: 10px;
+  margin: 18px 0;
+  padding: 16px 0;
+  border-block: 1px dashed var(--line);
+}
+
+.mini-facts > div {
+  display: flex;
+  gap: 14px;
+  font-size: 13.5px;
+}
+
+.mini-facts dt {
+  flex: 0 0 64px;
+  color: var(--muted);
+}
+
+.mini-facts dd {
+  margin: 0;
+  color: var(--text-soft);
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 20px 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.stat-num {
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.15;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.stat-label {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.now-card h3 {
+  font-size: 1.08rem;
+  margin: 12px 0 8px;
+}
+
+.now-meta {
+  color: var(--muted);
+  font-size: 12.5px;
+  margin-bottom: 8px;
+}
+
+.now-card .text-link {
+  font-size: 13px;
+}
+
+/* ---------- 时间线 ---------- */
+
+.timeline {
+  position: relative;
+  margin: 0;
+  padding: 4px 0 4px 30px;
+  list-style: none;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 8px;
+  width: 2px;
+  border-radius: 2px;
+  background: linear-gradient(var(--brand), var(--blue));
+  opacity: 0.35;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-dot {
+  position: absolute;
+  top: 28px;
+  left: -29px;
+  width: 14px;
+  height: 14px;
+  border: 3px solid var(--bg);
+  border-radius: 50%;
+  background: var(--brand);
+  box-shadow: 0 0 0 1px var(--brand);
+}
+
+.section-alt .timeline-dot {
+  border-color: var(--bg-alt);
+}
+
+.timeline-body {
+  padding: 18px 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.timeline-preview .timeline-item {
+  padding-left: 0;
+}
+
+.timeline-date {
+  margin-bottom: 4px;
+  color: var(--muted);
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.timeline-body h3 {
+  font-size: 1.04rem;
+  margin-bottom: 6px;
+}
+
+.timeline-body p:last-child {
+  margin-bottom: 0;
+  color: var(--text-soft);
+  font-size: 0.94rem;
+}
+
+.record {
+  padding: 24px 26px;
+}
+
+.record-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.record-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.record h3 {
+  font-size: 1.12rem;
+  margin-bottom: 14px;
+}
+
+.record-detail {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+}
+
+.record-detail > div {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  gap: 12px;
+}
+
+.record-detail dt {
+  color: var(--brand-strong);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.record-detail dd {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 0.94rem;
+}
+
+.record-delete {
+  margin-left: auto;
+  padding: 4px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.record-delete:hover {
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
+.record-actions {
+  margin-top: 12px;
+  text-align: right;
+}
+
+.record-actions .record-delete {
+  margin-left: 0;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.status-done {
+  background: rgba(34, 197, 94, 0.12);
+  color: #15803d;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.status-check {
+  background: rgba(245, 158, 11, 0.13);
+  color: #b45309;
+  border: 1px solid rgba(245, 158, 11, 0.32);
+}
+
+.status-doing {
+  background: rgba(37, 99, 235, 0.11);
+  color: #1d4ed8;
+  border: 1px solid rgba(37, 99, 235, 0.28);
+}
+
+[data-theme="dark"] .status-done {
+  color: #4ade80;
+  background: rgba(34, 197, 94, 0.12);
+}
+
+[data-theme="dark"] .status-check {
+  color: #fbbf24;
+  background: rgba(245, 158, 11, 0.12);
+}
+
+[data-theme="dark"] .status-doing {
+  color: #60a5fa;
+  background: rgba(37, 99, 235, 0.16);
+}
+
+/* ---------- 页面头部 ---------- */
+
+.page-hero {
+  padding: 56px 0 34px;
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(180deg, var(--bg-alt), transparent);
+}
+
+.page-hero h1 {
+  max-width: 18em;
+  font-size: clamp(1.9rem, 4vw, 2.7rem);
+  margin-bottom: 12px;
+}
+
+.page-lead {
+  max-width: 46em;
+  color: var(--text-soft);
+  margin-bottom: 0;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.legend li {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+/* ---------- 筛选 ---------- */
+
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.filter-btn {
+  padding: 7px 15px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text-soft);
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.filter-btn:hover {
+  border-color: var(--brand);
+  color: var(--brand-strong);
+}
+
+.filter-btn.is-active {
+  background: var(--grad);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(15, 157, 143, 0.22);
+}
+
+.filter-status {
+  margin: 8px 0 22px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.empty-state {
+  margin-top: 20px;
+  padding: 22px;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius-sm);
+  color: var(--muted);
+  text-align: center;
+}
+
+/* ---------- 表单 ---------- */
+
+.record-form,
+.contact-form {
+  padding: 30px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.field {
+  margin-bottom: 16px;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 13.5px;
+  font-weight: 700;
+}
+
+.req {
+  color: #dc2626;
+}
+
+.field input,
+.field textarea,
+.field select {
+  width: 100%;
+  padding: 11px 13px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: var(--surface-2);
+  color: var(--text);
+  font: inherit;
+  font-size: 14.5px;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 88px;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+  border-color: var(--brand);
+  background: var(--surface);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--brand) 14%, transparent);
+  outline: none;
+}
+
+.field input[aria-invalid="true"],
+.field textarea[aria-invalid="true"] {
+  border-color: #dc2626;
+}
+
+.field-error {
+  min-height: 1.2em;
+  margin: 4px 0 0;
+  color: #dc2626;
+  font-size: 12.5px;
+}
+
+[data-theme="dark"] .field-error {
+  color: #f87171;
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.form-note {
+  margin: 16px 0 0;
+  color: var(--muted);
+  font-size: 12.5px;
+}
+
+.form-success {
+  margin: 14px 0 0;
+  padding: 12px 16px;
+  border: 1px solid rgba(34, 197, 94, 0.32);
+  border-radius: 11px;
+  background: rgba(34, 197, 94, 0.1);
+  color: #15803d;
+  font-size: 13.5px;
+  font-weight: 600;
+}
+
+[data-theme="dark"] .form-success {
+  color: #4ade80;
+}
+
+/* ---------- 项目 ---------- */
+
+.project-list {
+  display: grid;
+  gap: 22px;
+}
+
+.project-card {
+  padding: 30px;
+}
+
+.project-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.project-index {
+  margin: 0 0 4px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+}
+
+.project-head h2 {
+  font-size: 1.35rem;
+  margin-bottom: 0;
+}
+
+.project-facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 28px;
+  margin: 8px 0 0;
+}
+
+.project-facts dt {
+  margin-bottom: 5px;
+  color: var(--brand-strong);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.project-facts dd {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 0.94rem;
+}
+
+.skill-card {
+  padding: 24px;
+}
+
+.skill-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.skill-head h3 {
+  margin: 0;
+  font-size: 1.08rem;
+}
+
+.skill-level {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.skill-card p {
+  color: var(--text-soft);
+  font-size: 0.94rem;
+}
+
+.skill-evidence {
+  margin-bottom: 0;
+  padding-top: 12px;
+  border-top: 1px dashed var(--line);
+  font-size: 0.9rem !important;
+}
+
+.code-list {
+  display: grid;
+  gap: 22px;
+}
+
+.code-card {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.code-card figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 13px 20px;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface-2);
+}
+
+.code-title {
+  font-size: 13.5px;
+  font-weight: 700;
+}
+
+.code-lang {
+  color: var(--muted);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.code-card pre {
+  margin: 0;
+  padding: 20px;
+  overflow-x: auto;
+  background: var(--code-bg);
+  color: var(--code-text);
+  font-family: "Cascadia Code", Consolas, "Courier New", monospace;
+  font-size: 13px;
+  line-height: 1.7;
+  tab-size: 4;
+}
+
+/* ---------- 联系 ---------- */
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: 22px;
+  align-items: start;
+}
+
+.contact-info {
+  display: grid;
+  gap: 14px;
+}
+
+.contact-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 22px;
+  color: var(--text);
+  text-decoration: none;
+  transition: transform 0.18s ease, border-color 0.18s ease;
+}
+
+a.contact-card:hover {
+  color: var(--text);
+  border-color: var(--brand);
+  transform: translateY(-2px);
+}
+
+.contact-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  border-radius: 13px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  font-size: 20px;
+}
+
+.contact-card strong {
+  display: block;
+  font-size: 13.5px;
+}
+
+.contact-value {
+  display: block;
+  color: var(--text-soft);
+  font-size: 13.5px;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.privacy-card {
+  padding: 20px 22px;
+  background: color-mix(in srgb, var(--brand) 5%, var(--surface));
+}
+
+.privacy-card h2 {
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+.privacy-card p {
+  margin-bottom: 8px;
+  color: var(--text-soft);
+  font-size: 13px;
+}
+
+.privacy-card p:last-child {
+  margin-bottom: 0;
+}
+
+.contact-form h2 {
+  font-size: 1.3rem;
+  margin-bottom: 4px;
+}
+
+.form-intro {
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 18px;
+}
+
+/* ---------- CTA 与页脚 ---------- */
+
+.cta-panel {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 36px 40px;
+  border-radius: var(--radius);
+  background: var(--grad);
+  color: #fff;
+  box-shadow: var(--shadow);
+}
+
+.cta-panel h2 {
+  margin-bottom: 6px;
+  font-size: 1.5rem;
+}
+
+.cta-panel p {
+  margin-bottom: 0;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.95rem;
+}
+
+.site-footer {
+  margin-top: 40px;
+  padding: 26px 0;
+  border-top: 1px solid var(--line);
+  background: var(--bg-alt);
+}
+
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.footer-inner p {
+  margin: 0;
+}
+
+.footer-note {
+  font-size: 12px;
+}
+
+.back-to-top {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--grad);
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(15, 157, 143, 0.3);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* ---------- 滚动出现 ---------- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- 响应式 ---------- */
+
+@media (max-width: 980px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .hero-card {
+    max-width: 560px;
+  }
+
+  .grid-3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .stat-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .project-facts {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .container,
+  .container.narrow {
+    width: min(100% - 32px, var(--max-width));
+  }
+
+  .section {
+    padding: 52px 0;
+  }
+
+  .section-tight {
+    padding: 40px 0;
+  }
+
+  .nav-toggle {
+    display: block;
+    order: 2;
+  }
+
+  .site-nav {
+    position: absolute;
+    top: calc(100% + 1px);
+    right: 16px;
+    left: 16px;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+    padding: 12px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+  }
+
+  .site-nav.is-open {
+    display: flex;
+  }
+
+  .site-nav a {
+    padding: 11px 14px;
+    border-radius: 9px;
+  }
+
+  .theme-toggle {
+    align-self: flex-start;
+    margin: 6px 2px 0;
+  }
+
+  .header-inner {
+    position: relative;
+  }
+
+  .hero {
+    padding-top: 44px;
+  }
+
+  .grid-2,
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .record-detail > div {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+
+  .record-detail dt {
+    font-size: 12.5px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .cta-panel {
+    padding: 30px 26px;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+  }
+
+  .timeline {
+    padding-left: 24px;
+  }
+
+  .timeline-dot {
+    left: -23px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 15px;
+  }
+
+  .hero-title {
+    font-size: 2.15rem;
+  }
+
+  .card,
+  .record,
+  .project-card,
+  .record-form,
+  .contact-form {
+    padding: 20px;
+  }
+
+  .stat-card {
+    padding: 16px 18px;
+  }
+
+  .stat-num {
+    font-size: 1.6rem;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+  }
+
+  .cta-panel .btn {
+    width: 100%;
+  }
+
+  .legend {
+    gap: 10px;
+  }
+
+  .back-to-top {
+    right: 16px;
+    bottom: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+
+/* ---------- 单文件版：视图切换 ---------- */
+.view {
+  display: none;
+}
+
+.view.is-active {
+  display: block;
+}
+
+  </style>
+</head>
+<body data-page="single">
+  <a class="skip-link" href="#view-home">跳到主要内容</a>
+
+<header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#home" aria-label="回到首页">
+        <span class="brand-mark" aria-hidden="true">C</span>
+        <span class="brand-text">陈若尘<span class="brand-sub">成长主页</span></span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="siteNav">
+        <span class="nav-toggle-lines" aria-hidden="true"></span>
+        <span class="sr-only">打开导航菜单</span>
+      </button>
+
+      <nav class="site-nav" id="siteNav" aria-label="主导航">
+        <a href="#home">关于我</a>
+        <a href="#study">学习记录</a>
+        <a href="#projects">项目作品</a>
+        <a href="#skills">技能展示</a>
+        <a href="#contact">联系我</a>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="切换深色模式">
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.3M12 19.2v2.3M2.5 12h2.3M19.2 12h2.3M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M18.7 5.3l-1.6 1.6M6.9 17.1l-1.6 1.6"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.4 8.4 0 0 1 9.8 3.5 8.4 8.4 0 1 0 20.5 14.2z"/></svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+<div class="view" data-view="home" id="view-home">
+
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">华中科技大学 · 软件学院 · 软件工程（AI 大模型试验班）202604 班</p>
+          <h1 class="hero-title">你好，我是<span class="gradient-text">陈若尘</span></h1>
+          <p class="hero-lead">
+            一个刚起步的软件工程学生。遇到不懂的喜欢刨根问底，
+            踩过的坑会记下来，免得下次再踩。
+          </p>
+          <div class="tag-row" aria-label="关注方向">
+            <span class="tag">C 语言</span>
+            <span class="tag">OpenCL</span>
+            <span class="tag">GPU 性能测试</span>
+            <span class="tag">Python 自动化</span>
+            <span class="tag">英语精听</span>
+          </div>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#study">看看我的学习记录</a>
+            <a class="btn btn-ghost" href="#projects">翻翻项目作品</a>
+            <a class="btn btn-ghost" href="#skills">看看技能证据</a>
+          </div>
+        </div>
+
+        <aside class="hero-card card reveal" aria-label="当前状态">
+          <div class="status-dot-row">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span>最近在折腾</span>
+          </div>
+          <h2 class="hero-card-title">OpenCL 带宽到底怎么算</h2>
+          <p class="hero-card-text">
+            一开始把 CUDA 的 grid 当成 global work size，测出 92487 GB/s，
+            明显不对劲；按总工作项重算后，数字回到 515 GB/s 左右。
+          </p>
+          <dl class="mini-facts">
+            <div>
+              <dt>正在学</dt>
+              <dd>C 语言 · 软件工程基础</dd>
+            </div>
+            <div>
+              <dt>下一步</dt>
+              <dd>把报告自动化整理成模板</dd>
+            </div>
+            <div>
+              <dt>更新方式</dt>
+              <dd>学一点，记一点</dd>
+            </div>
+          </dl>
+          <a class="text-link" href="#study">查看这条记录的完整过程 →</a>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="section-kicker">关于我</p>
+          <h2>先把自己介绍清楚</h2>
+          <p class="section-desc">主页会一直更新，所以这一段也会跟着我一起变。</p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card reveal">
+            <h3 class="card-title"><span class="card-icon" aria-hidden="true">🧭</span>我是谁</h3>
+            <p>
+              陈若尘，华中科技大学软件学院软件工程（AI 大模型试验班）202604 班学生。
+              2026 年秋天第一次认真写 C：从编译器装在哪里、PATH 是什么开始，
+              到现在能独立写完带排序和查找的成绩管理程序。
+            </p>
+          </article>
+          <article class="card reveal">
+            <h3 class="card-title"><span class="card-icon" aria-hidden="true">📚</span>我在学什么</h3>
+            <p>
+              主线是 C 语言和软件工程基础，同时接触 GPU 性能测试（C + OpenCL）
+              和 AI 工程；课外每天练英语精听和阅读。
+              比起背语法，我更关心“这段代码为什么这样组织”“这个数字为什么这样算”。
+            </p>
+          </article>
+          <article class="card reveal">
+            <h3 class="card-title"><span class="card-icon" aria-hidden="true">🪵</span>我怎么学</h3>
+            <p>
+              先让程序跑通，再回头问为什么，最后写一份能回看的记录：
+              当时卡在哪、试过什么、结论是什么、还有哪里没想明白。
+              没解决的也留着，不假装会。以后每学完一个新东西，就补一条记录；踩过的坑也写进去，方便下次直接查。
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-tight">
+      <div class="container">
+        <ul class="stat-grid">
+          <li class="stat-card reveal">
+            <span class="stat-num">10</span>
+            <span class="stat-label">条学习记录</span>
+          </li>
+          <li class="stat-card reveal">
+            <span class="stat-num">5</span>
+            <span class="stat-label">个动手项目</span>
+          </li>
+          <li class="stat-card reveal">
+            <span class="stat-num">2</span>
+            <span class="stat-label">个还在验证的问题</span>
+          </li>
+          <li class="stat-card reveal">
+            <span class="stat-num">∞</span>
+            <span class="stat-label">次继续更新</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="now">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="section-kicker">最近在学</p>
+          <h2>现在手头这几件事</h2>
+          <p class="section-desc">每件都对应学习记录里的一条，可以点进去看细节。</p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card now-card reveal">
+            <p class="tag tag-soft">GPU</p>
+            <h3>OpenCL 带宽测量</h3>
+            <p>测显存读写速度，核对工作项数量和带宽单位，数字终于回到合理区间。</p>
+            <p class="now-meta">待验证 · 计时方式还要再确认</p>
+            <a class="text-link" href="#study">读这条记录 →</a>
+          </article>
+          <article class="card now-card reveal">
+            <p class="tag tag-soft">C 语言</p>
+            <h3>成绩管理程序</h3>
+            <p>二维数组存学号和成绩，选择排序整理顺序，二分查找定位学生。</p>
+            <p class="now-meta">实验 5-2 · 已解决</p>
+            <a class="text-link" href="#study">读这条记录 →</a>
+          </article>
+          <article class="card now-card reveal">
+            <p class="tag tag-soft">英语</p>
+            <h3>阅读难度跳档之后</h3>
+            <p>连续两次 9/9 后换成观点文掉到 9/12，正在用句意改写和难句拆解补。</p>
+            <p class="now-meta">进行中 · 一次只升一个维度</p>
+            <a class="text-link" href="#study">读这条记录 →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="preview">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="section-kicker">成长轨迹</p>
+          <h2>最近几个月，我踩过的几个坑</h2>
+          <p class="section-desc">从装环境到写算法，再到测 GPU，每一步都留了痕迹。</p>
+        </div>
+
+        <ol class="timeline timeline-preview">
+          <li class="timeline-item reveal">
+            <span class="timeline-dot" aria-hidden="true"></span>
+            <div class="timeline-body">
+              <p class="timeline-date">2026-10 · 环境配置</p>
+              <h3>第一次跑通 Hello World</h3>
+              <p>装好 w64devkit 的 GCC 和 VS Code，编译成功。中途 PATH 不生效，重开终端才读到新变量。</p>
+            </div>
+          </li>
+          <li class="timeline-item reveal">
+            <span class="timeline-dot" aria-hidden="true"></span>
+            <div class="timeline-body">
+              <p class="timeline-date">2026-11-08 · C 语言</p>
+              <h3>实验 5-2：成绩管理程序</h3>
+              <p>三个坑：读字符的编码、装不下的名字、二分查找的边界。最后一个让我盯着屏幕想了很久。</p>
+            </div>
+          </li>
+          <li class="timeline-item reveal">
+            <span class="timeline-dot" aria-hidden="true"></span>
+            <div class="timeline-body">
+              <p class="timeline-date">2026-11 · GPU</p>
+              <h3>测出一个不可能的带宽</h3>
+              <p>先把 CUDA 的概念套到了 OpenCL 上，后来按总工作项重新算，数字才落回正常范围。</p>
+            </div>
+          </li>
+        </ol>
+
+        <div class="center-actions">
+          <a class="btn btn-primary" href="#study">查看全部 10 条学习记录</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="cta-panel reveal">
+          <div>
+            <h2>这页会一直写下去</h2>
+            <p>下次学完新东西，我会回来补一条记录。如果你也在学 C 或做 GPU 测试，欢迎交流。</p>
+          </div>
+          <a class="btn btn-light" href="#contact">给我留言</a>
+        </div>
+      </div>
+    </section>
+  
+</div>
+
+<div class="view" data-view="study" id="view-study">
+
+    <section class="page-hero">
+      <div class="container">
+        <p class="eyebrow">学习记录</p>
+        <h1>把“不会到会”的过程留下来</h1>
+        <p class="page-lead">
+          每条记录都按同一个格式写：什么时候、学了什么、卡在哪里、后来怎么处理。
+          已经解决的放在这里，没解决的也放在这里，等以后回来补。
+        </p>
+        <ul class="legend">
+          <li><span class="status status-done">已解决</span> 跑通并验证过</li>
+          <li><span class="status status-check">待验证</span> 结果有了，还要再确认</li>
+          <li><span class="status status-doing">进行中</span> 正在做，细节还在补</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section section-tight" id="timeline">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="section-kicker">时间线</p>
+          <h2>10 条学习记录</h2>
+          <p class="section-desc">
+            从环境配置到 OpenCL、从英语精听到课程论文，时间不算长，但每条都真的花过时间。
+            可以按方向筛选，也可以在页面底部新增记录。
+          </p>
+        </div>
+
+        <div class="filter-bar reveal" role="group" aria-label="按分类筛选学习记录">
+          <button class="filter-btn is-active" type="button" data-filter="all" aria-pressed="true">全部</button>
+          <button class="filter-btn" type="button" data-filter="c" aria-pressed="false">C 语言</button>
+          <button class="filter-btn" type="button" data-filter="gpu" aria-pressed="false">GPU</button>
+          <button class="filter-btn" type="button" data-filter="python" aria-pressed="false">Python</button>
+          <button class="filter-btn" type="button" data-filter="english" aria-pressed="false">英语</button>
+          <button class="filter-btn" type="button" data-filter="course" aria-pressed="false">课程</button>
+        </div>
+        <p class="filter-status" id="filterStatus" aria-live="polite">显示全部 10 条记录</p>
+
+        <ol class="timeline" id="recordList">
+          <li class="timeline-item reveal" data-category="english" id="rec-english">
+            <span class="timeline-dot" aria-hidden="true"></span>
+            <article class="card record">
+              <div class="record-top">
+                <div class="record-meta">
+                  <time datetime="2026-11-16">2026-11-16</time>
+                  <span class="tag tag-english">英语</span>
+                </div>
+                <span class="status status-doing">进行中</span>
+              </div>
+              <h3>阅读难度跳档之后，错题暴露了真正的问题</h3>
+              <dl class="record-detail">
+                <div>
+                  <dt>学了什么</dt>
+                  <dd>每天三篇英文阅读加选择题。前几天的文章连着两次 9/9，就把材料换成了更抽象的观点文，限时 8 分钟一篇。</dd>
+                </div>
+                <div>
+                  <dt>卡在哪里</dt>
+                  <dd>Day 04 一下掉到 9/12。错因很集中：否定题（should NOT）读反、选项“无中生有”、近义干扰项不够精确。不是单词不认识，是句子结构和指代没跟上。</dd>
+                </div>
+                <div>
+                  <dt>怎么处理</dt>
+                  <dd>从 Day 05 开始加“句意改写题”和难句拆解，并定了个规矩：一次只升一个维度，长度、句式、题型不能同时加。现在还在按这个节奏练，跨篇题的正确率还没稳定到 80%。</dd>
+                </div>
+              </dl>
+            </article>
+          </li>
+
+          <li class="timeline-item reveal" data-category="english" id="rec-english2">
+            <span class="timeline-dot" aria-hidden="true"></span>
+            <article class="card record">
+              <div class="record-top">
+                <div class="record-meta">
+                  <time datetime="2026-11-10">2026-11-09 ~ 11-10</time>
+                  <span class="tag tag-english">英语</span>
+                </div>
+                <span class="status status-done">已解决</span>
+              </div>
+              <h3>连续两次 9/9，才开始加难度</h3>
+              <dl class="record-detail">
+                <div>
+                  <dt>学了什么</dt>
+                  <dd>按“记忆、睡眠、注意力”和“考试焦虑、刻意练习、协作学习”分主题读三篇一组，每组 9 道选择题，生词只留 4 个重点词。</dd>
+                </div>
+                <div>
+                  <dt>遇到什么问题</dt>
+                  <dd>第一组有一道题错在把“疲惫让一切看起来更糟”引申成“喘不过气”，还有一道漏掉了 <code>not A, but B</code> 里的否定项。</dd>
+                </div>
+                <div>
+                  <dt>怎么处理</dt>
+                  <dd>每篇做完先在原文里标出错题定位段，再写一句“我为什么被这个选项骗到”。第二组开始连续两次 9/9，才决定把难度往上加。</dd>
+                </div>
+              </dl>
+            </article>
+          </li>
+
+          <li class="timeline-item reveal" data-category="gpu" id="rec-gpu">
+            <span class="timeline-dot" aria-hidden="true"></span>
+            <article class="card record">
+              <div class="record-top">
+                <div class="record-meta">
+                  <time datetime="2026-11">2026-11</time>
+                  <span class="tag tag-gpu">GPU</span>
+                </div>
+                <span class="status status-check">待验证</span>
+              </div>
+              <h3>OpenCL 带宽测出来 92487 GB/s，明显不对劲</h3>
+              <dl class="record-detail">
+                <div>
+                  <dt>学了什么</dt>
+                  <dd>用 C 调 OpenCL：写 kernel 做内存读写、设置 global / local work size、用 event 计时，再按“传输字节数 ÷ 耗时”算带宽。</dd>
+                </div>
+                <div>
+                  <dt>卡在哪里</dt>
+                  <dd>第一次测出的数字比显卡物理带宽大两个数量级。回头检查才发现，我把 CUDA 的 grid 当成 OpenCL 的 global work size，少算了每组里的工作项。</dd>
+                </div>
+                <div>
+                  <dt>怎么处理</dt>
+                  <dd>改成 global = group 数 × 每组工作项数，并按总工作项数算字节数，结果回到 515 GB/s 附近。还没完全确认计时是否包含 kernel 启动开销，也没做多轮取平均，准备再测一轮。</dd>
+                </div>
+              </dl>
+            </article>
+          </li>
+
+          <li class="timeline-item reveal" data-category="course" id="rec-paper">
+            <span class="timeline-dot" aria-hidden="true"></span>
+            <article class="card record">
+              <div class="record-top">
+                <div class="record-meta">
+                  <time datetime="2026-11">2026-11</time>
+                  <span class="tag tag-course">课程</span>
+                </div>
+                <span class="status status-done">已解决</span>
+              </div>
+              <h3>写《长安三万里》影评：换个角度，论点才立得住</h3>
+              <dl class="record-detail">
+                <div>
+                  <dt>学了什么</dt>
+                  <dd>中国语文课程论文。最初想用“历史真实”和“完整叙事”去评价电影，写着写着发现这个标准本身有问题。</dd>
+                </div>
+                <div>
+                  <dt>卡在哪里</dt>
+                  <dd>按“流水账”“李白塌房”的思路写，论点容易变成剧情复述，也解释不了电影为什么让高适来讲这个故事。</dd>
+                </div>
+                <div>
+                  <dt>怎么处理</dt>
+                  <dd>把问题换成“谁在讲、讲给谁”：高适被问话，李白是他讲述的对象，所以观众看到的是“高适版的李白”。不可靠叙述不是毛病，而是影片的方法。改完角度后，论文才顺下来。</dd>
+                </div>
+              </dl>
+            </article>
+          </li>
+
+          <li class="timeline-item reveal" data-category="course" id="rec-lostfound">
+            <span class="timeline-dot" aria-hidden="true"></span>
+            <article class="card record">
+              <div class="record-top">
+                <div class="record-meta">
+                  <time datetime="2026-11">2026-11</time>
+                  <span class="tag tag-course">课程</span>
+                </div>
+                <span class="status status-doing">进行中</span>
+              </div>
+              <h3>校园失物招领：把“能搜索”拆成验收标准</h3>
+              <dl class="record-detail">
+                <div>
+                  <dt>学了什么</dt>
+                  <dd>软件工程课的 AI 实践任务，给校园失物招领系统做需求分析：定义用户角色、功能需求和验收标准。</dd>
+                </div>
+                <div>
+                  <dt>卡在哪里</dt>
+                  <dd>一开始觉得“能发布、能搜索、能认领、能审核”就够了，真写需求才发现“能搜索”根本不是验收标准：输入什么、多久返回、能不能按地点筛选，全都没说清。</dd>
+                </div>
+                <div>
+                  <dt>怎么处理</dt>
+                  <dd>把功能拆成角色和场景：发布者要多久填完、认领者怎么证明物品是自己的、管理员怎么处理重复和虚假信息。现在还在补验收标准，原型没开始写。</dd>
+                </div>
+              </dl>
+            </article>
+          </li>
+
+          <li class="timeline-item reveal" data-category="c" id="rec-20261108">
+            <span class="timeline-dot" aria-hidden="true"></span>
+            <article class="card record">
+              <div class="record-top">
+                <div class="record-meta">
+                  <time datetime="2026-11-08">2026-11-08</time>
+                  <span class="tag tag-c">C 语言</span>
+                </div>
+                <span class="status status-done">已解决</span>
+              </div>
+              <h3>实验 5-2：用二维数组写成绩管理</h3>
+              <dl class="record-detail">
+                <div>
+                  <dt>学了什么</dt>
+                  <dd>用二维数组存学号和成绩，选择排序整理顺序，二分查找按学号定位；字符串用 <code>strcpy</code> 拷贝，输入用 <code>scanf</code>，最后把查询结果打印出来。</dd>
+                </div>
+                <div>
+                  <dt>卡在哪里</dt>
+                  <dd>三个问题：<code>getchar</code> 读字符时碰到中文编码，读到的是字节，菜单会乱跳；<code>char name[100]</code> 只放得下一个名字，存多个就溢出；二分查找写成 <code>low &gt;= high</code>，最后一个元素永远比不到。</dd>
+                </div>
+                <div>
+                  <dt>怎么处理</dt>
+                  <dd>字符只用于菜单选项，名字改用二维数组加 <code>strcpy</code>；二分条件改成 <code>low &lt;= high</code>，找不到返回 -1。最后拿第一个、最后一个、不存在的学号各测了一遍。</dd>
+                </div>
+              </dl>
+            </article>
+          </li>
+
+          <li class="timeline-item reveal" data-category="c" id="rec-20261107">
+            <span class="timeline-dot" aria-hidden="true"></span>
+            <article class="card record">
+              <div class="record-top">
+                <div class="record-meta">
+                  <time datetime="2026-11-07">2026-11-07</time>
+                  <span class="tag tag-c">C 语言</span>
+                </div>
+                <span class="status status-done">已解决</span>
+              </div>
+              <h3>实验 4：把程序拆成多个文件</h3>
+              <dl class="record-detail">
+                <div>
+                  <dt>学了什么</dt>
+                  <dd>预处理阶段的几件事：宏定义和带参宏、条件编译、多文件工程（.h 放声明、.c 放实现）、用 <code>assert</code> 守住开发阶段的假设。</dd>
+                </div>
+                <div>
+                  <dt>卡在哪里</dt>
+                  <dd>习惯性多写了一个 <code>#include &lt;string.h&gt;</code>，其实没用到，编译一直提示；另外在 VC++ 2010 里把变量声明写在语句后面，直接编译报错。</dd>
+                </div>
+                <div>
+                  <dt>怎么处理</dt>
+                  <dd>只保留真正用到的头文件；把变量声明统一挪到代码块开头，按 C89 的规矩写，就过了。也记住了 C99 才支持随时声明变量。</dd>
+                </div>
+              </dl>
+            </article>
+          </li>
+
+          <li class="timeline-item reveal" data-category="python" id="rec-ppt">
+            <span class="timeline-dot" aria-hidden="true"></span>
+            <article class="card record">
+              <div class="record-top">
+                <div class="record-meta">
+                  <time datetime="2026-10">2026-10</time>
+                  <span class="tag tag-python">Python</span>
+                </div>
+                <span class="status status-done">已解决</span>
+              </div>
+              <h3>用 python-pptx 做“我和新时代的故事”演讲 PPT</h3>
+              <dl class="record-detail">
+                <div>
+                  <dt>学了什么</dt>
+                  <dd>用 python-pptx 生成 18 页、10 分钟的演讲 PPT，试着把渐变蒙版、转场和“平滑”效果写进 OOXML。</dd>
+                </div>
+                <div>
+                  <dt>卡在哪里</dt>
+                  <dd>被评审打回三次。给照片加渐变蒙版后整页均匀变灰，原因是色标位置单位是千分之一百分比，写成了 ×1000；视频页后面的转场总是丢，因为 <code>&lt;p:transition&gt;</code> 被排到了 <code>&lt;p:timing&gt;</code> 后面；Morph 只认同名元素。</dd>
+                </div>
+                <div>
+                  <dt>怎么处理</dt>
+                  <dd>改单位、把 transition 插到 timing 之前、统一形状 name。转场和视频播放没法用 LibreOffice 验证，只能每次按 F5 手动看。</dd>
+                </div>
+              </dl>
+            </article>
+          </li>
+
+          <li class="timeline-item reveal" data-category="python" id="rec-report">
+            <span class="timeline-dot" aria-hidden="true"></span>
+            <article class="card record">
+              <div class="record-top">
+                <div class="record-meta">
+                  <time datetime="2026-10">2026-10</time>
+                  <span class="tag tag-python">Python</span>
+                </div>
+                <span class="status status-done">已解决</span>
+              </div>
+              <h3>用 python-docx 自动生成实验报告</h3>
+              <dl class="record-detail">
+                <div>
+                  <dt>学了什么</dt>
+                  <dd>按模板生成实验报告 docx：控制字体、行距、缩进和页边距，把代码从源文件读进来，再导出 PDF；另外写了脚本检查代码和报告是否逐行一致。</dd>
+                </div>
+                <div>
+                  <dt>卡在哪里</dt>
+                  <dd>作业目录里的 .c 文件是 GBK 编码，按 UTF-8 读会乱码；WPS 开着文档时保存直接 PermissionError；目录页码得从导出的 PDF 反查后再回填。</dd>
+                </div>
+                <div>
+                  <dt>怎么处理</dt>
+                  <dd>读写都按 GBK + CRLF；保存前先探测文件有没有被占用；目录页码用脚本从 PDF 里找标题位置回填。现在实验 4 和 5-2 的报告都能一次生成。</dd>
+                </div>
+              </dl>
+            </article>
+          </li>
+
+          <li class="timeline-item reveal" data-category="c" id="rec-env">
+            <span class="timeline-dot" aria-hidden="true"></span>
+            <article class="card record">
+              <div class="record-top">
+                <div class="record-meta">
+                  <time datetime="2026-10">2026-10</time>
+                  <span class="tag tag-c">C 语言</span>
+                </div>
+                <span class="status status-done">已解决</span>
+              </div>
+              <h3>第一次跑通 Hello World</h3>
+              <dl class="record-detail">
+                <div>
+                  <dt>学了什么</dt>
+                  <dd>装 w64devkit（GCC 16.2.0），配好 VS Code 的编译和调试；第一次知道 .c 文件要先编译、再链接，才能变成能运行的 .exe。</dd>
+                </div>
+                <div>
+                  <dt>卡在哪里</dt>
+                  <dd>装完编译器，终端里敲 <code>gcc</code> 还是提示“不是内部或外部命令”；VS Code 里能编译，系统终端却不行。</dd>
+                </div>
+                <div>
+                  <dt>怎么处理</dt>
+                  <dd>PATH 里其实已经加了 w64devkit 的 bin 目录，只是当前终端还在用旧的环境变量。关掉终端重开就好了。后来也养成用 <code>where gcc</code> 确认当前用的是哪个编译器的习惯。</dd>
+                </div>
+              </dl>
+            </article>
+          </li>
+        </ol>
+
+        <p class="empty-state" id="emptyState" hidden>这个分类下还没有记录。换一个分类看看，或者在下面新增一条。</p>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="add-record">
+      <div class="container narrow">
+        <div class="section-head reveal">
+          <p class="section-kicker">继续记录</p>
+          <h2>添加一条学习记录</h2>
+          <p class="section-desc">
+            日期、标题、分类和内容必填。提交后会立即出现在上面的时间线里，并保存在本机浏览器中
+            （localStorage），不会上传到任何服务器。
+          </p>
+        </div>
+
+        <form class="card record-form reveal" id="recordForm" novalidate>
+          <div class="form-grid">
+            <div class="field">
+              <label for="recDate">日期 <span class="req" aria-hidden="true">*</span></label>
+              <input type="date" id="recDate" name="date" required>
+              <p class="field-error" id="recDateError" role="alert"></p>
+            </div>
+            <div class="field">
+              <label for="recTitle">标题 <span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="recTitle" name="title" maxlength="60" placeholder="比如：第一次用 OpenCL 测带宽" required>
+              <p class="field-error" id="recTitleError" role="alert"></p>
+            </div>
+            <div class="field">
+              <label for="recCategory">分类</label>
+              <select id="recCategory" name="category">
+                <option value="c">C 语言</option>
+                <option value="gpu">GPU</option>
+                <option value="python">Python</option>
+                <option value="english">英语</option>
+                <option value="course">课程</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="recLearned">学了什么 <span class="req" aria-hidden="true">*</span></label>
+            <textarea id="recLearned" name="learned" rows="3" maxlength="400" placeholder="具体一点：用了什么、做了什么，至少 10 个字。" required></textarea>
+            <p class="field-error" id="recLearnedError" role="alert"></p>
+          </div>
+          <div class="field">
+            <label for="recProblem">遇到什么问题</label>
+            <textarea id="recProblem" name="problem" rows="2" maxlength="400" placeholder="现象是什么？报错信息、异常的数字都可以写。"></textarea>
+          </div>
+          <div class="field">
+            <label for="recSolution">怎么解决的 / 还没解决什么</label>
+            <textarea id="recSolution" name="solution" rows="2" maxlength="400" placeholder="试过哪些方法？最后的结论是什么？"></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn btn-primary" type="submit">保存到时间线</button>
+            <button class="btn btn-ghost" type="reset">清空表单</button>
+          </div>
+          <p class="form-note">记录只保存在这台设备的这个浏览器里。换设备或清理浏览器数据后会丢失，想长期保存可以把内容补进 study.html。</p>
+          <p class="form-success" id="formSuccess" role="status" hidden></p>
+        </form>
+      </div>
+    </section>
+  
+</div>
+
+<div class="view" data-view="projects" id="view-projects">
+
+    <section class="page-hero">
+      <div class="container">
+        <p class="eyebrow">项目作品</p>
+        <h1>做过的东西，和它们教会我的事</h1>
+        <p class="page-lead">
+          这里放 5 个项目：每个都写清楚解决什么问题、我负责哪部分、用了什么技术、最大的困难是什么。技能展示和代码证据单独放在技能展示页。
+        </p>
+      </div>
+    </section>
+
+    <section class="section section-tight" id="projects">
+      <div class="container">
+        <div class="project-list">
+          <article class="card project-card reveal">
+            <div class="project-head">
+              <div>
+                <p class="project-index">01</p>
+                <h2>GPU 性能测试工具</h2>
+              </div>
+              <span class="status status-check">待验证</span>
+            </div>
+            <div class="tag-row">
+              <span class="tag">C</span>
+              <span class="tag">OpenCL</span>
+              <span class="tag">性能测试</span>
+            </div>
+            <dl class="project-facts">
+              <div>
+                <dt>解决什么问题</dt>
+                <dd>测量 GPU 显存的读写带宽，比较不同 work size 设置下结果是否稳定，用来判断测出来的数字可不可信。</dd>
+              </div>
+              <div>
+                <dt>我负责什么</dt>
+                <dd>从环境配置、kernel 编写到计时和结果核对，全部独立完成；最后把测量过程和异常数字整理成记录。</dd>
+              </div>
+              <div>
+                <dt>用了什么技术</dt>
+                <dd>C 语言调用 OpenCL API，写 kernel 做内存读写，用 event 计时，按“字节数 ÷ 耗时”计算带宽。</dd>
+              </div>
+              <div>
+                <dt>最大困难</dt>
+                <dd>把 CUDA 的 grid 概念直接套到了 OpenCL 的 global work size 上，少算了每组工作项，测出 92487 GB/s。按总工作项重算后回到 515 GB/s 附近，但计时是否包含启动开销还没确认。</dd>
+              </div>
+            </dl>
+          </article>
+
+          <article class="card project-card reveal">
+            <div class="project-head">
+              <div>
+                <p class="project-index">02</p>
+                <h2>成绩管理程序</h2>
+              </div>
+              <span class="status status-done">已完成</span>
+            </div>
+            <div class="tag-row">
+              <span class="tag">C</span>
+              <span class="tag">数组与字符串</span>
+              <span class="tag">排序查找</span>
+            </div>
+            <dl class="project-facts">
+              <div>
+                <dt>解决什么问题</dt>
+                <dd>管理一批学生的学号和成绩：录入、按学号排序、按学号查询，并输出成绩单。这是 C 语言实验 5-2 的题目。</dd>
+              </div>
+              <div>
+                <dt>我负责什么</dt>
+                <dd>全部代码：数据结构设计、输入处理、选择排序、二分查找和测试用例。</dd>
+              </div>
+              <div>
+                <dt>用了什么技术</dt>
+                <dd>C89 风格的 C 语言，二维字符数组存学号，选择排序整理顺序，二分查找定位学生，<code>strcpy</code> 处理字符串。</dd>
+              </div>
+              <div>
+                <dt>最大困难</dt>
+                <dd>二分查找的边界写成 <code>low &gt;= high</code>，最后一个元素永远查不到；另外 <code>getchar</code> 在中文编码下读字符会乱跳，名字数组也装不下多个名字。分别用 <code>low &lt;= high</code>、<code>scanf</code>、二维数组加 <code>strcpy</code> 解决。</dd>
+              </div>
+            </dl>
+          </article>
+
+          <article class="card project-card reveal">
+            <div class="project-head">
+              <div>
+                <p class="project-index">03</p>
+                <h2>实验报告自动排版脚本</h2>
+              </div>
+              <span class="status status-done">已完成</span>
+            </div>
+            <div class="tag-row">
+              <span class="tag">Python</span>
+              <span class="tag">python-docx</span>
+              <span class="tag">文档自动化</span>
+            </div>
+            <dl class="project-facts">
+              <div>
+                <dt>解决什么问题</dt>
+                <dd>实验报告有固定的字体、行距、缩进、图表题注和目录格式，每次手动排版既慢又容易漏。用脚本按模板生成 docx，再统一导出 PDF。</dd>
+              </div>
+              <div>
+                <dt>我负责什么</dt>
+                <dd>脚本设计、模板格式对照、代码与报告一致性校验；实验 4 和 5-2 的报告都跑通了。</dd>
+              </div>
+              <div>
+                <dt>用了什么技术</dt>
+                <dd>Python + python-docx 控制段落和字体，读取 GBK 编码的 .c 源文件，用 Word COM 导出 PDF，再用脚本检查格式和代码是否一致。</dd>
+              </div>
+              <div>
+                <dt>最大困难</dt>
+                <dd>编码和文件占用：.c 文件是 GBK，按 UTF-8 读写会乱码；WPS 开着文档时保存报 PermissionError；目录页码还得从导出的 PDF 里反查后回填。</dd>
+              </div>
+            </dl>
+          </article>
+
+          <article class="card project-card reveal">
+            <div class="project-head">
+              <div>
+                <p class="project-index">04</p>
+                <h2>“我和新时代的故事”演讲 PPT</h2>
+              </div>
+              <span class="status status-done">已完成</span>
+            </div>
+            <div class="tag-row">
+              <span class="tag">Python</span>
+              <span class="tag">python-pptx</span>
+              <span class="tag">演讲表达</span>
+            </div>
+            <dl class="project-facts">
+              <div>
+                <dt>解决什么问题</dt>
+                <dd>做一份 18 页、10 分钟的演讲 PPT，讲光谷和我对软件工程的理解，同时用脚本控制版式，避免一页页手动调。</dd>
+              </div>
+              <div>
+                <dt>我负责什么</dt>
+                <dd>讲稿、页面结构和 python-pptx 脚本；被评审打回三轮后，逐项改版式和转场。</dd>
+              </div>
+              <div>
+                <dt>用了什么技术</dt>
+                <dd>Python + python-pptx 生成页面，直接改 OOXML 设置渐变、转场和 Morph，渲染成图片检查排版。</dd>
+              </div>
+              <div>
+                <dt>最大困难</dt>
+                <dd>渐变色标位置的单位是千分之一百分比，写错会让整页变灰；<code>transition</code> 必须排在 <code>timing</code> 前面，否则视频页的转场会被 PowerPoint 静默丢掉；Morph 只认同名元素。</dd>
+              </div>
+            </dl>
+          </article>
+
+          <article class="card project-card reveal">
+            <div class="project-head">
+              <div>
+                <p class="project-index">05</p>
+                <h2>校园失物招领系统需求分析</h2>
+              </div>
+              <span class="status status-doing">进行中</span>
+            </div>
+            <div class="tag-row">
+              <span class="tag">软件工程</span>
+              <span class="tag">需求分析</span>
+              <span class="tag">验收标准</span>
+            </div>
+            <dl class="project-facts">
+              <div>
+                <dt>解决什么问题</dt>
+                <dd>软件工程课的 AI 实践任务：设计一个能发布、搜索、认领、审核的校园失物招领系统。目前先做需求分析。</dd>
+              </div>
+              <div>
+                <dt>我负责什么</dt>
+                <dd>整理用户角色、功能需求和验收标准，把“能搜索”这类模糊说法拆成可以验证的条件。</dd>
+              </div>
+              <div>
+                <dt>用了什么技术</dt>
+                <dd>需求文档和场景拆解；编码还没开始。</dd>
+              </div>
+              <div>
+                <dt>最大困难</dt>
+                <dd>一开始以为“能搜索”就是验收标准，真正拆的时候才发现要定义输入、响应时间、筛选维度，以及认领时怎么证明东西是自己的。</dd>
+              </div>
+            </dl>
+          </article>
+        </div>
+      </div>
+    </section>
+
+  
+</div>
+
+<div class="view" data-view="skills" id="view-skills">
+
+      <section class="page-hero">
+      <div class="container">
+        <p class="eyebrow">技能展示</p>
+        <h1>每项技能都配一个证据</h1>
+        <p class="page-lead">不写程度形容词，只写我用它做过什么、能拿出什么东西。下面 6 项技能都附代码片段、项目或测量数据。</p>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="skills">
+      <div class="container">
+        <div class="grid-2">
+          <article class="card skill-card reveal">
+            <div class="skill-head">
+              <h3>C 语言</h3>
+              <span class="skill-level">能独立写完整程序</span>
+            </div>
+            <p>数组、二维字符数组、结构体、多文件工程、宏和条件编译、assert；能用选择排序和二分查找处理数据。</p>
+            <p class="skill-evidence"><strong>证据：</strong>成绩管理程序（实验 5-2）、实验 4 的多文件预处理练习，下面是二分查找的核心代码。</p>
+          </article>
+
+          <article class="card skill-card reveal">
+            <div class="skill-head">
+              <h3>OpenCL / GPU 性能测试</h3>
+              <span class="skill-level">能跑通并排查异常</span>
+            </div>
+            <p>会写 kernel、设置 global/local work size、用 event 计时，并按传输字节数换算带宽；能判断结果是否超过硬件物理上限。</p>
+            <p class="skill-evidence"><strong>证据：</strong>把 92487 GB/s 的异常结果定位到 work size 误用，重算后回到 515 GB/s 左右。</p>
+          </article>
+
+          <article class="card skill-card reveal">
+            <div class="skill-head">
+              <h3>Python 文档自动化</h3>
+              <span class="skill-level">能批量处理 docx / pptx</span>
+            </div>
+            <p>用 python-docx 按模板生成实验报告并导出 PDF，用 python-pptx 生成演讲 PPT；会处理 GBK 编码、文件占用和格式校验。</p>
+            <p class="skill-evidence"><strong>证据：</strong>实验 4、5-2 的报告生成脚本；18 页演讲 PPT 的生成和改版。</p>
+          </article>
+
+          <article class="card skill-card reveal">
+            <div class="skill-head">
+              <h3>英语精听与阅读</h3>
+              <span class="skill-level">每天保持输入</span>
+            </div>
+            <p>每天三篇分级阅读加选择题，按主题和难度分批推进；会记录错因（否定题、无中生有、近义干扰），再用句意改写和难句拆解补。</p>
+            <p class="skill-evidence"><strong>证据：</strong>连续两次 9/9 后主动升难度，Day 04 掉到 9/12 并完成复盘。</p>
+          </article>
+
+          <article class="card skill-card reveal">
+            <div class="skill-head">
+              <h3>写作与表达</h3>
+              <span class="skill-level">能立论、能讲清楚</span>
+            </div>
+            <p>写过课程论文和演讲稿，习惯先确定“谁在说、说给谁”，再展开论点，避免写成剧情复述或资料堆砌。</p>
+            <p class="skill-evidence"><strong>证据：</strong>《长安是被讲出来的——评〈长安三万里〉》课程论文；“我和新时代的故事”演讲。</p>
+          </article>
+
+          <article class="card skill-card reveal">
+            <div class="skill-head">
+              <h3>工具链与调试</h3>
+              <span class="skill-level">能自己把环境跑通</span>
+            </div>
+            <p>w64devkit / GCC、VS Code、PowerShell、Git；遇到 PATH、编码、文件占用这类问题，会先定位再动手改。</p>
+            <p class="skill-evidence"><strong>证据：</strong>从 gcc 不识别到独立配置编译环境；用 <code>where gcc</code> 确认编译器来源。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="code">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="section-kicker">代码片段</p>
+          <h2>三个关键片段</h2>
+          <p class="section-desc">都是项目里实际写过、后来回头修正过的部分，不是从教程里抄的示例。</p>
+        </div>
+
+        <div class="code-list">
+          <figure class="code-card reveal">
+            <figcaption>
+              <span class="code-title">二分查找：边界为什么改成 low &lt;= high</span>
+              <span class="code-lang">C</span>
+            </figcaption>
+            <pre><code>/* 在按学号升序排好的数组里查找，找不到返回 -1 */
+int find_student(char id[][ID_LEN], int n, const char *target)
+{
+    int low = 0, high = n - 1;
+    while (low &lt;= high) {              /* 原来写成 low &gt;= high，漏掉最后一个元素 */
+        int mid = low + (high - low) / 2;
+        int cmp = strcmp(id[mid], target);
+        if (cmp == 0) return mid;
+        if (cmp &lt; 0) low = mid + 1;
+        else high = mid - 1;
+    }
+    return -1;
+}</code></pre>
+          </figure>
+
+          <figure class="code-card reveal">
+            <figcaption>
+              <span class="code-title">带宽计算：先数清楚总工作项</span>
+              <span class="code-lang">C / OpenCL</span>
+            </figcaption>
+            <pre><code>/* 一次读 + 一次写按 2 次访存算；total_items 是总工作项，不是 group 数 */
+size_t total_items = global_size;          /* group 数 × 每组工作项数 */
+double bytes = 2.0 * total_items * sizeof(float);
+double seconds = elapsed_ms / 1000.0;
+printf("bandwidth: %.2f GB/s\n", bytes / seconds / 1e9);
+/* 之前把 CUDA 的 grid 当成 global work size，字节数少算，才测出 92487 GB/s */</code></pre>
+          </figure>
+
+          <figure class="code-card reveal">
+            <figcaption>
+              <span class="code-title">按 run 替换文字，不破坏原有格式</span>
+              <span class="code-lang">Python / python-docx</span>
+            </figcaption>
+            <pre><code>def replace_in_paragraph(paragraph, old, new):
+    """直接改 paragraph.text 会丢掉加粗和字号，所以按 run 替换。"""
+    for run in paragraph.runs:
+        if old in run.text:
+            run.text = run.text.replace(old, new)</code></pre>
+          </figure>
+        </div>
+      </div>
+    </section>
+  
+</div>
+
+<div class="view" data-view="contact" id="view-contact">
+
+    <section class="page-hero">
+      <div class="container">
+        <p class="eyebrow">联系我</p>
+        <h1>欢迎交流，也欢迎指出问题</h1>
+        <p class="page-lead">
+          不管是 C 语言、OpenCL、文档自动化，还是英语学习方法，都欢迎发邮件或到 GitHub 找我。
+          这个页面只放公开联系方式，不放手机号和家庭住址。
+        </p>
+      </div>
+    </section>
+
+    <section class="section section-tight">
+      <div class="container contact-grid">
+        <div class="contact-info">
+          <a class="card contact-card reveal" href="mailto:chenruochen@hust.edu.cn">
+            <span class="contact-icon" aria-hidden="true">✉️</span>
+            <span>
+              <strong>邮箱</strong>
+              <span class="contact-value">chenruochen@hust.edu.cn</span>
+            </span>
+          </a>
+          <a class="card contact-card reveal" href="https://github.com/chenruochen" target="_blank" rel="noopener">
+            <span class="contact-icon" aria-hidden="true">🐙</span>
+            <span>
+              <strong>GitHub</strong>
+              <span class="contact-value">github.com/chenruochen</span>
+            </span>
+          </a>
+          <div class="card contact-card reveal">
+            <span class="contact-icon" aria-hidden="true">🎓</span>
+            <span>
+              <strong>学校</strong>
+              <span class="contact-value">华中科技大学 · 软件学院<br>软件工程（AI 大模型试验班）202604 班</span>
+            </span>
+          </div>
+
+          <div class="card privacy-card reveal">
+            <h2>隐私说明</h2>
+            <p>本页只放邮箱和 GitHub，不公开手机号、家庭住址、身份证号等敏感信息。</p>
+            <p>留言表单是前端演示：内容只保存在这台设备的浏览器里，不会上传，也不会真的发送邮件。</p>
+          </div>
+        </div>
+
+        <form class="card contact-form reveal" id="contactForm" novalidate>
+          <h2>给我留言</h2>
+          <p class="form-intro">带 <span class="req">*</span> 的是必填项，提交前会在本地检查格式。</p>
+
+          <div class="field">
+            <label for="contactName">怎么称呼你 <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="contactName" name="name" maxlength="20" autocomplete="name" placeholder="比如：李同学" required>
+            <p class="field-error" id="contactNameError" role="alert"></p>
+          </div>
+
+          <div class="field">
+            <label for="contactEmail">邮箱 <span class="req" aria-hidden="true">*</span></label>
+            <input type="email" id="contactEmail" name="email" maxlength="80" autocomplete="email" placeholder="name@example.com" required>
+            <p class="field-error" id="contactEmailError" role="alert"></p>
+          </div>
+
+          <div class="field">
+            <label for="contactTopic">想聊什么</label>
+            <select id="contactTopic" name="topic">
+              <option value="study">学习交流</option>
+              <option value="project">项目合作</option>
+              <option value="other">其他</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="contactMessage">留言 <span class="req" aria-hidden="true">*</span></label>
+            <textarea id="contactMessage" name="message" rows="5" maxlength="400" placeholder="写点具体的事情，至少 10 个字。" required></textarea>
+            <p class="field-error" id="contactMessageError" role="alert"></p>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn btn-primary" type="submit">提交留言</button>
+            <button class="btn btn-ghost" type="reset">清空</button>
+          </div>
+          <p class="form-note">提交后会看到本地保存成功的提示；这不是真的发送，只用于演示表单校验。</p>
+          <p class="form-success" id="contactSuccess" role="status" hidden></p>
+        </form>
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="section-kicker">可以聊什么</p>
+          <h2>我目前在学、也愿意交流的方向</h2>
+        </div>
+        <div class="grid-3">
+          <article class="card reveal">
+            <h3>C 语言与实验报告</h3>
+            <p>数组、字符串、多文件工程、预处理；如果你也在折腾实验报告排版和代码一致性检查，可以一起讨论。</p>
+          </article>
+          <article class="card reveal">
+            <h3>OpenCL / GPU 性能测试</h3>
+            <p>刚踩过 work size 的坑，对“测出来的数字为什么不可信”很感兴趣，欢迎指正我的计时方式。</p>
+          </article>
+          <article class="card reveal">
+            <h3>英语精听与写作</h3>
+            <p>每天三篇阅读的练习者，正在补句子结构和指代；也欢迎交流怎么把技术过程写清楚。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  
+</div>
+
+  <button class="back-to-top" id="backToTop" type="button" aria-label="回到顶部">↑</button>
+
+  <script>
+/* =========================================================
+   陈若尘的成长主页 · 全站脚本
+   原生 JavaScript，无第三方库
+   ========================================================= */
+
+(function () {
+  'use strict';
+
+  var page = document.body.getAttribute('data-page');
+  var root = document.documentElement;
+
+  /* ---------- 主题切换 ---------- */
+
+  var themeToggle = document.getElementById('themeToggle');
+
+  function syncThemeButton() {
+    if (!themeToggle) return;
+    var isDark = root.getAttribute('data-theme') === 'dark';
+    var label = isDark ? '切换浅色模式' : '切换深色模式';
+    themeToggle.setAttribute('aria-label', label);
+    themeToggle.setAttribute('title', label);
+  }
+
+  if (themeToggle) {
+    syncThemeButton();
+    themeToggle.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try {
+        localStorage.setItem('gt-theme', next);
+      } catch (err) { /* 隐私模式下忽略 */ }
+      syncThemeButton();
+    });
+  }
+
+  /* ---------- 移动端导航 ---------- */
+
+  var navToggle = document.getElementById('navToggle');
+  var siteNav = document.getElementById('siteNav');
+
+  function closeNav() {
+    if (!navToggle || !siteNav) return;
+    navToggle.setAttribute('aria-expanded', 'false');
+    siteNav.classList.remove('is-open');
+  }
+
+  if (navToggle && siteNav) {
+    navToggle.addEventListener('click', function () {
+      var isOpen = navToggle.getAttribute('aria-expanded') === 'true';
+      navToggle.setAttribute('aria-expanded', String(!isOpen));
+      siteNav.classList.toggle('is-open', !isOpen);
+    });
+
+    siteNav.addEventListener('click', function (event) {
+      var link = event.target.closest('a');
+      if (link) closeNav();
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && siteNav.classList.contains('is-open')) {
+        closeNav();
+        navToggle.focus();
+      }
+    });
+
+    document.addEventListener('click', function (event) {
+      if (!siteNav.classList.contains('is-open')) return;
+      if (siteNav.contains(event.target) || navToggle.contains(event.target)) return;
+      closeNav();
+    });
+  }
+
+  /* ---------- 滚动淡入 ---------- */
+
+  var revealItems = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    revealItems.forEach(function (el) {
+      el.classList.add('is-visible');
+    });
+  } else {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
+
+    revealItems.forEach(function (el) {
+      observer.observe(el);
+    });
+  }
+
+  /* ---------- 回到顶部 ---------- */
+
+  var backToTop = document.getElementById('backToTop');
+
+  if (backToTop) {
+    var onScroll = function () {
+      backToTop.classList.toggle('is-visible', window.scrollY > 480);
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    backToTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+    });
+  }
+
+  /* ---------- 页脚年份 ---------- */
+
+  var yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
+  /* ---------- 学习记录页 ---------- */
+
+  function initStudy() {
+    var recordList = document.getElementById('recordList');
+    var filterStatus = document.getElementById('filterStatus');
+    var emptyState = document.getElementById('emptyState');
+    var form = document.getElementById('recordForm');
+    var formSuccess = document.getElementById('formSuccess');
+    var filterButtons = Array.prototype.slice.call(document.querySelectorAll('.filter-btn'));
+
+    if (!recordList) return;
+
+    var STORAGE_KEY = 'gt-study-records-v1';
+    var CATEGORY_LABEL = {
+      c: 'C 语言',
+      gpu: 'GPU',
+      python: 'Python',
+      english: '英语',
+      course: '课程'
+    };
+    var currentFilter = 'all';
+
+    function escapeHtml(value) {
+      return String(value == null ? '' : value).replace(/[&<>"']/g, function (ch) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch];
+      });
+    }
+
+    function loadRecords() {
+      try {
+        var raw = localStorage.getItem(STORAGE_KEY);
+        var data = raw ? JSON.parse(raw) : [];
+        return Array.isArray(data) ? data : [];
+      } catch (err) {
+        return [];
+      }
+    }
+
+    function saveRecords(list) {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+      } catch (err) { /* 存不下时忽略，页面仍然可用 */ }
+    }
+
+    function applyFilter(filter) {
+      currentFilter = filter;
+      var items = Array.prototype.slice.call(recordList.querySelectorAll('.timeline-item'));
+      var visible = 0;
+
+      items.forEach(function (item) {
+        var show = filter === 'all' || item.getAttribute('data-category') === filter;
+        item.hidden = !show;
+        if (show) visible += 1;
+      });
+
+      if (filterStatus) {
+        var label = filter === 'all' ? '全部' : (CATEGORY_LABEL[filter] || filter);
+        filterStatus.textContent = '显示' + label + ' ' + visible + ' 条记录';
+      }
+      if (emptyState) emptyState.hidden = visible !== 0;
+    }
+
+    filterButtons.forEach(function (button) {
+      button.addEventListener('click', function () {
+        filterButtons.forEach(function (other) {
+          other.classList.toggle('is-active', other === button);
+          other.setAttribute('aria-pressed', String(other === button));
+        });
+        applyFilter(button.getAttribute('data-filter'));
+      });
+    });
+
+    function createRecordElement(record) {
+      var category = CATEGORY_LABEL[record.category] ? record.category : 'course';
+      var item = document.createElement('li');
+      item.className = 'timeline-item is-local';
+      item.setAttribute('data-category', category);
+
+      var detail = '';
+      detail += '<div><dt>学了什么</dt><dd>' + escapeHtml(record.learned) + '</dd></div>';
+      if (record.problem) {
+        detail += '<div><dt>遇到什么问题</dt><dd>' + escapeHtml(record.problem) + '</dd></div>';
+      }
+      if (record.solution) {
+        detail += '<div><dt>怎么处理</dt><dd>' + escapeHtml(record.solution) + '</dd></div>';
+      }
+
+      item.innerHTML =
+        '<span class="timeline-dot" aria-hidden="true"></span>' +
+        '<article class="card record">' +
+        '  <div class="record-top">' +
+        '    <div class="record-meta">' +
+        '      <time datetime="' + escapeHtml(record.date) + '">' + escapeHtml(record.date) + '</time>' +
+        '      <span class="tag tag-soft">' + escapeHtml(CATEGORY_LABEL[category]) + '</span>' +
+        '    </div>' +
+        '    <span class="status status-doing">我新增的</span>' +
+        '  </div>' +
+        '  <h3>' + escapeHtml(record.title) + '</h3>' +
+        '  <dl class="record-detail">' + detail + '</dl>' +
+        '  <div class="record-actions">' +
+        '    <button class="record-delete" type="button" data-id="' + escapeHtml(record.id) + '">删除这条</button>' +
+        '  </div>' +
+        '</article>';
+
+      return item;
+    }
+
+    var stored = loadRecords();
+    stored.slice().reverse().forEach(function (record) {
+      recordList.insertBefore(createRecordElement(record), recordList.firstChild);
+    });
+
+    applyFilter('all');
+
+    recordList.addEventListener('click', function (event) {
+      var button = event.target.closest('.record-delete');
+      if (!button) return;
+
+      var id = button.getAttribute('data-id');
+      saveRecords(loadRecords().filter(function (record) {
+        return record.id !== id;
+      }));
+
+      var item = button.closest('.timeline-item');
+      if (item) item.remove();
+      applyFilter(currentFilter);
+      showFormSuccess('已删除这条本地记录。');
+    });
+
+    var recDate = document.getElementById('recDate');
+    var recTitle = document.getElementById('recTitle');
+    var recCategory = document.getElementById('recCategory');
+    var recLearned = document.getElementById('recLearned');
+    var recProblem = document.getElementById('recProblem');
+    var recSolution = document.getElementById('recSolution');
+
+    function setFieldError(input, errorEl, message) {
+      if (errorEl) errorEl.textContent = message || '';
+      if (input) input.setAttribute('aria-invalid', message ? 'true' : 'false');
+    }
+
+    function clearRecordErrors() {
+      setFieldError(recDate, document.getElementById('recDateError'), '');
+      setFieldError(recTitle, document.getElementById('recTitleError'), '');
+      setFieldError(recLearned, document.getElementById('recLearnedError'), '');
+    }
+
+    function showFormSuccess(message) {
+      if (!formSuccess) return;
+      formSuccess.textContent = message;
+      formSuccess.hidden = false;
+    }
+
+    if (form) {
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        clearRecordErrors();
+        if (formSuccess) formSuccess.hidden = true;
+
+        var date = recDate ? recDate.value.trim() : '';
+        var title = recTitle ? recTitle.value.trim() : '';
+        var learned = recLearned ? recLearned.value.trim() : '';
+        var firstInvalid = null;
+
+        if (!date) {
+          setFieldError(recDate, document.getElementById('recDateError'), '请选择日期。');
+          firstInvalid = firstInvalid || recDate;
+        }
+        if (title.length < 2) {
+          setFieldError(recTitle, document.getElementById('recTitleError'), '标题至少写 2 个字。');
+          firstInvalid = firstInvalid || recTitle;
+        }
+        if (learned.length < 10) {
+          setFieldError(recLearned, document.getElementById('recLearnedError'), '“学了什么”至少写 10 个字，写具体一点。');
+          firstInvalid = firstInvalid || recLearned;
+        }
+
+        if (firstInvalid) {
+          firstInvalid.focus();
+          return;
+        }
+
+        var record = {
+          id: 'local-' + Date.now(),
+          date: date,
+          title: title,
+          category: recCategory ? recCategory.value : 'course',
+          learned: learned,
+          problem: recProblem ? recProblem.value.trim() : '',
+          solution: recSolution ? recSolution.value.trim() : '',
+          createdAt: new Date().toISOString()
+        };
+
+        var records = loadRecords();
+        records.unshift(record);
+        saveRecords(records);
+
+        recordList.insertBefore(createRecordElement(record), recordList.firstChild);
+        applyFilter(currentFilter);
+        form.reset();
+        clearRecordErrors();
+        showFormSuccess('已保存到本地：' + record.title + '（刷新后还在）');
+      });
+
+      form.addEventListener('reset', function () {
+        clearRecordErrors();
+        if (formSuccess) {
+          formSuccess.hidden = true;
+          formSuccess.textContent = '';
+        }
+      });
+    }
+  }
+
+  /* ---------- 联系页表单 ---------- */
+
+  function initContact() {
+    var form = document.getElementById('contactForm');
+    if (!form) return;
+
+    var nameInput = document.getElementById('contactName');
+    var emailInput = document.getElementById('contactEmail');
+    var topicInput = document.getElementById('contactTopic');
+    var messageInput = document.getElementById('contactMessage');
+    var success = document.getElementById('contactSuccess');
+    var STORAGE_KEY = 'gt-contact-messages-v1';
+
+    function setError(input, errorId, message) {
+      var errorEl = document.getElementById(errorId);
+      if (errorEl) errorEl.textContent = message || '';
+      if (input) input.setAttribute('aria-invalid', message ? 'true' : 'false');
+    }
+
+    function clearErrors() {
+      setError(nameInput, 'contactNameError', '');
+      setError(emailInput, 'contactEmailError', '');
+      setError(messageInput, 'contactMessageError', '');
+    }
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      clearErrors();
+      if (success) success.hidden = true;
+
+      var name = nameInput.value.trim();
+      var email = emailInput.value.trim();
+      var message = messageInput.value.trim();
+      var firstInvalid = null;
+
+      if (name.length < 2) {
+        setError(nameInput, 'contactNameError', '请写一下怎么称呼你，至少 2 个字。');
+        firstInvalid = firstInvalid || nameInput;
+      }
+
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        setError(emailInput, 'contactEmailError', '邮箱格式不太对，检查一下。');
+        firstInvalid = firstInvalid || emailInput;
+      }
+
+      if (message.length < 10) {
+        setError(messageInput, 'contactMessageError', '留言至少写 10 个字，说清楚你想聊什么。');
+        firstInvalid = firstInvalid || messageInput;
+      }
+
+      if (firstInvalid) {
+        firstInvalid.focus();
+        return;
+      }
+
+      try {
+        var raw = localStorage.getItem(STORAGE_KEY);
+        var list = raw ? JSON.parse(raw) : [];
+        if (!Array.isArray(list)) list = [];
+        list.unshift({
+          name: name,
+          email: email,
+          topic: topicInput ? topicInput.value : 'other',
+          message: message,
+          createdAt: new Date().toISOString()
+        });
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(list.slice(0, 20)));
+      } catch (err) { /* 存不下也不影响页面 */ }
+
+      form.reset();
+      clearErrors();
+      if (success) {
+        success.textContent = '已保存在本地（演示，不会真的发送）。谢谢你，' + name + '！';
+        success.hidden = false;
+      }
+    });
+
+    form.addEventListener('reset', function () {
+      clearErrors();
+      if (success) {
+        success.hidden = true;
+        success.textContent = '';
+      }
+    });
+  }
+
+  /* ---------- 按页面初始化 ---------- */
+
+  if (page === 'study' || document.getElementById('recordList')) {
+    initStudy();
+  }
+  if (page === 'contact' || document.getElementById('contactForm')) {
+    initContact();
+  }
+})();
+
+
+/* ---------- 单文件版：hash 视图切换 ---------- */
+(function () {
+  var views = Array.prototype.slice.call(document.querySelectorAll('.view'));
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.site-nav a'));
+  var titles = { home: '关于我', study: '学习记录', projects: '项目作品', skills: '技能展示', contact: '联系我' };
+
+  function currentView() {
+    var hash = (window.location.hash || '#home').replace('#', '').split('/')[0];
+    return titles[hash] ? hash : 'home';
+  }
+
+  function showView(name) {
+    views.forEach(function (view) {
+      view.classList.toggle('is-active', view.getAttribute('data-view') === name);
+    });
+    var activeView = document.querySelector('.view[data-view="' + name + '"]');
+    if (activeView) {
+      activeView.querySelectorAll('.reveal').forEach(function (el) {
+        el.classList.add('is-visible');
+      });
+    }
+    navLinks.forEach(function (link) {
+      var active = link.getAttribute('href') === '#' + name;
+      link.classList.toggle('is-active', active);
+      if (active) {
+        link.setAttribute('aria-current', 'page');
+      } else {
+        link.removeAttribute('aria-current');
+      }
+    });
+    document.title = titles[name] + ' | 陈若尘的成长主页';
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }
+
+  window.addEventListener('hashchange', function () {
+    showView(currentView());
+  });
+
+  showView(currentView());
+})();
+
+  </script>
+</body>
+</html>

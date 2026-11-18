@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="陈若尘的学习记录：每条写清学了什么、遇到什么问题、怎么处理。">
+<title>学习记录 · 陈若尘的成长主页</title>
+<style>
+:root{--b:#0f9d8f;--t:#0f1b2d;--m:#5b6b80;--bg:#f6f9fc;--c:#fff;--l:#e1e8f0;--g:linear-gradient(120deg,#0f9d8f,#2563eb)}
+[data-theme=dark]{--t:#e9f0fa;--m:#a9b8cc;--bg:#0a1220;--c:#111d31;--l:#22314a;--b:#2dd4bf}
+*{box-sizing:border-box}body{margin:0;font:16px/1.7 "PingFang SC","Microsoft YaHei",sans-serif;color:var(--t);background:var(--bg)}
+a{color:#0b7f74}header{position:sticky;top:0;z-index:9;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px max(16px,calc((100% - 1000px)/2));background:rgba(246,249,252,.9);border-bottom:1px solid var(--l);backdrop-filter:blur(8px)}
+[data-theme=dark] header{background:rgba(10,18,32,.9)}
+.logo{font-weight:800;color:var(--t);text-decoration:none}.logo span{display:block;font-size:10px;letter-spacing:.15em;color:var(--m);font-weight:500}
+nav{display:flex;align-items:center;gap:2px;flex-wrap:wrap}nav a{padding:6px 9px;border-radius:8px;font-size:14px;color:var(--m);text-decoration:none}nav a.active{color:#0b7f74;background:#0f9d8f1a;font-weight:700}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid #0f9d8f;outline-offset:2px}
+@media(prefers-color-scheme:dark){html:not([data-theme=light]){--t:#e9f0fa;--m:#a9b8cc;--bg:#0a1220;--c:#111d31;--l:#22314a;--b:#2dd4bf}html:not([data-theme=light]) header{background:rgba(10,18,32,.9)}}
+#theme{width:32px;height:32px;margin-left:4px;border:1px solid var(--l);border-radius:50%;background:var(--c);cursor:pointer;font-size:14px}
+.main{width:min(1000px,calc(100% - 32px));margin:auto;padding:34px 0 50px}.eyebrow{color:#0b7f74;font-size:12px;font-weight:700;letter-spacing:.08em}.g{background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent}
+h1{font-size:clamp(1.9rem,5vw,2.6rem);line-height:1.25;margin:8px 0 12px}h2{font-size:1.35rem;margin:34px 0 14px}h3{margin:0 0 8px;font-size:1.06rem}
+.lead{color:var(--m);max-width:46em}.tags{display:flex;gap:7px;flex-wrap:wrap;margin:16px 0}.tag,.btn{display:inline-block;padding:4px 11px;border-radius:999px;font-size:12.5px;font-weight:600;background:#0f9d8f12;border:1px solid #0f9d8f33;color:#0b7f74;text-decoration:none}
+.btn{padding:9px 18px;font-size:14px;background:var(--g);color:#fff;border:0;margin:4px 6px 4px 0}.btn.ghost{background:var(--c);color:var(--t);border:1px solid var(--l)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.card{display:block;background:var(--c);border:1px solid var(--l);border-radius:14px;padding:18px;box-shadow:0 4px 14px #0f1b2d08;min-width:0;text-decoration:none;color:inherit}.card p{margin:0;color:var(--m);font-size:14px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:26px}.stats div{background:var(--c);border:1px solid var(--l);border-radius:12px;padding:14px 18px;font-size:12px;color:var(--m)}.stats b{display:block;font-size:1.7rem;color:var(--b)}
+.record{padding:18px 20px;margin:12px 0;background:var(--c);border:1px solid var(--l);border-left:4px solid var(--b);border-radius:12px}.meta{font-size:12px;color:var(--m);margin:0 0 4px}.record dl{margin:8px 0 0;font-size:14px}.record dt{font-weight:700;color:#0b7f74;margin-top:7px}.record dd{margin:0;color:var(--m)}
+form{background:var(--c);border:1px solid var(--l);border-radius:14px;padding:18px;margin-top:26px}label{display:block;font-size:13px;font-weight:700;margin-bottom:10px}input,textarea{display:block;width:100%;margin-top:4px;padding:8px 10px;border:1px solid var(--l);border-radius:8px;background:#f8fafc;color:var(--t);font:inherit;font-size:14px}textarea{resize:vertical}
+#ok{color:#15803d;font-size:13px;margin-left:8px}.code{background:#0f172a;color:#e2e8f0;border-radius:12px;padding:16px;overflow:auto;font:13px/1.65 Consolas,monospace;white-space:pre;max-width:100%;overflow-x:auto}
+footer{border-top:1px solid var(--l);padding:18px;text-align:center;font-size:12px;color:var(--m)}
+@media(max-width:760px){.grid{grid-template-columns:minmax(0,1fr)}.grid>*{min-width:0}h1{font-size:2rem}nav a{font-size:13px;padding:5px 6px}.logo span{display:none}.main{padding-top:24px}.code{font-size:12px;padding:12px}}
+</style>
+</head>
+<body>
+<header>
+<a class="logo" href="index.html">陈若尘<span>成长主页</span></a>
+<nav>
+<a href="index.html">关于我</a><a class="active" href="study.html" aria-current="page">学习记录</a><a href="projects.html">项目作品</a><a href="contact.html">联系我</a>
+<button id="theme" type="button" aria-label="切换主题">🌙</button>
+</nav>
+</header>
+<main class="main">
+<h1>学习记录</h1>
+<p class="lead">预置的每条都按“时间 / 学了什么 / 遇到什么问题 / 怎么处理”写，没解决的也留着；自己新增的允许简写。</p>
+<div id="list">
+<article class="record"><p class="meta">2026-10 · C 语言</p><h3>第一次跑通 Hello World</h3><dl><dt>学了什么</dt><dd>装 w64devkit（GCC 16.2.0）和 VS Code，写第一个 Hello World，知道 .c 要先编译再链接。</dd><dt>遇到什么问题</dt><dd>终端里 gcc 不识别，VS Code 里能编译；PATH 没在当前终端生效。</dd><dt>怎么处理</dt><dd>重开终端后恢复，后来习惯用 where gcc 确认编译器。</dd></dl></article>
+<article class="record"><p class="meta">2026-11-07 · C 语言</p><h3>实验 4：编译预处理</h3><dl><dt>学了什么</dt><dd>宏、条件编译、多文件工程和 assert。</dd><dt>遇到什么问题</dt><dd>多写了没用的 string.h；变量声明写在语句后面，VC++ 2010 按 C89 报错。</dd><dt>怎么处理</dt><dd>只留用到的头文件，把变量声明挪到代码块开头。</dd></dl></article>
+<article class="record"><p class="meta">2026-11-08 · C 语言</p><h3>实验 5-2：成绩管理程序</h3><dl><dt>学了什么</dt><dd>二维数组存学号和成绩，选择排序整理顺序，二分查找按学号查询。</dd><dt>遇到什么问题</dt><dd>getchar 读字符受编码影响；char name[100] 装不下多个名字；二分写成 low ≥ high，最后一个元素永远查不到。</dd><dt>怎么处理</dt><dd>字符只用于菜单，名字改用二维数组加 strcpy，二分改成 low ≤ high，找不到返回 -1。</dd></dl></article>
+<article class="record"><p class="meta">2026-11 · GPU</p><h3>OpenCL 带宽测出 92487 GB/s</h3><dl><dt>学了什么</dt><dd>C 调 OpenCL，写 kernel 做内存读写，用 event 计时，按字节数除耗时算带宽。</dd><dt>遇到什么问题</dt><dd>把 CUDA 的 grid 当成 OpenCL 的 global work size，少算了每组工作项，数字比物理带宽大两个数量级。</dd><dt>怎么处理</dt><dd>改成 global = group 数 × 每组工作项数，并按总工作项算字节数，回到 515 GB/s 附近。计时是否含启动开销还没确认。</dd></dl></article>
+<article class="record"><p class="meta">2026-11 · 英语</p><h3>阅读难度跳档之后</h3><dl><dt>学了什么</dt><dd>每天三篇阅读加选择题，连续两次 9/9 后换成观点文，限时 8 分钟一篇。</dd><dt>遇到什么问题</dt><dd>Day 04 掉到 9/12：否定题读反、选项无中生有、近义干扰不精确。</dd><dt>怎么处理</dt><dd>加句意改写和难句拆解，一次只升一个维度；跨篇正确率还没稳定到 80%。</dd></dl></article>
+<article class="record"><p class="meta">2026-10 起 · Python</p><h3>用 python-docx 生成实验报告</h3><dl><dt>学了什么</dt><dd>按模板生成 docx、导出 PDF，控制字体和行距。</dd><dt>遇到什么问题</dt><dd>GBK 编码乱码、WPS 占用文件、目录页码对不上。</dd><dt>怎么处理</dt><dd>按 GBK 读写、保存前探测占用、从 PDF 回填页码。</dd></dl></article>
+<article class="record"><p class="meta">2026-10 · Python</p><h3>python-pptx 做 18 页演讲 PPT</h3><dl><dt>学了什么</dt><dd>用 python-pptx 生成版式，改 OOXML 做渐变和转场。</dd><dt>遇到什么问题</dt><dd>渐变单位错、transition 顺序错、Morph 不生效。</dd><dt>怎么处理</dt><dd>按千分之一百分比改单位、把 transition 放到 timing 前、统一 shape.name。</dd></dl></article>
+<article class="record"><p class="meta">2026-11 · 课程</p><h3>《长安三万里》课程论文</h3><dl><dt>学了什么</dt><dd>写影评，先确定“谁在讲、讲给谁”。</dd><dt>遇到什么问题</dt><dd>按“流水账”批评，论点变成剧情复述。</dd><dt>怎么处理</dt><dd>转到“谁在讲、讲给谁”，把不可靠叙述当方法。</dd></dl></article>
+</div>
+<form id="add" novalidate>
+<h3>添加一条学习记录</h3>
+<label>日期<input type="date" id="d" required></label>
+<label>标题<input id="t" maxlength="30" placeholder="今天学了什么" required></label>
+<label>学了什么、遇到什么问题<textarea id="x" rows="2" maxlength="120" placeholder="至少 10 个字" required></textarea></label>
+<button class="btn" type="submit">保存到时间线</button><span id="ok" role="status" aria-live="polite"></span>
+</form>
+<p class="lead" style="margin-top:14px;font-size:13px">记录存在浏览器 localStorage 里，不上传服务器；换设备或清缓存会丢失。</p>
+
+</main>
+<footer>© 2026 陈若尘 · 华中科技大学 · 原生 HTML / CSS / JavaScript</footer>
+<script>(function(){
+var btn=document.getElementById('theme');
+var saved='';try{saved=localStorage.getItem('theme')||''}catch(e){}
+function isDark(){var s=document.documentElement.dataset.theme;if(s)return s==='dark';return !!(window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches)}
+function paint(){if(!btn)return;btn.textContent=isDark()?'\u2600\ufe0f':'\u{1F319}';btn.setAttribute('aria-pressed',isDark()?'true':'false')}
+if(saved==='dark'||saved==='light'){document.documentElement.dataset.theme=saved}
+paint();
+if(btn)btn.onclick=function(){
+var next=isDark()?'light':'dark';
+document.documentElement.dataset.theme=next;
+try{localStorage.setItem('theme',next)}catch(e){}
+paint();
+};
+})();
+</script>
+<script>(function(){
+var form=document.getElementById('add'),d=document.getElementById('d'),t=document.getElementById('t'),x=document.getElementById('x'),ok=document.getElementById('ok'),list=document.getElementById('list');
+function esc(s){return s.replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function add(r){
+var a=document.createElement('article');a.className='record';
+a.innerHTML='<p class="meta">'+esc(r.date)+' \u00b7 我新增的</p><h3>'+esc(r.title)+'</h3><p>'+esc(r.text)+'</p>';
+list.insertBefore(a,list.firstChild);
+}
+try{JSON.parse(localStorage.getItem('records')||'[]').forEach(add)}catch(e){}
+form.onsubmit=function(e){
+e.preventDefault();
+if(!d.value||t.value.trim().length<2||x.value.trim().length<10){ok.textContent='请把日期、标题（至少 2 个字）和至少 10 个字的内容填完整。';ok.style.color='#dc2626';return}
+var r={date:d.value,title:t.value.trim(),text:x.value.trim()};
+add(r);
+try{var l=JSON.parse(localStorage.getItem('records')||'[]');l.unshift(r);localStorage.setItem('records',JSON.stringify(l.slice(0,20)))}catch(e){}
+form.reset();ok.textContent='已保存到本地，刷新后还在。';ok.style.color='#15803d';
+};
+})();
+</script>
+</body>
+</html>

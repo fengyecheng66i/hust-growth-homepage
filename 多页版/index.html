@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="华中科技大学软件学院陈若尘的个人成长主页：学习记录、项目作品与联系方式。">
+<title>陈若尘的成长主页 · 关于我</title>
+<style>
+:root{--b:#0f9d8f;--t:#0f1b2d;--m:#5b6b80;--bg:#f6f9fc;--c:#fff;--l:#e1e8f0;--g:linear-gradient(120deg,#0f9d8f,#2563eb)}
+[data-theme=dark]{--t:#e9f0fa;--m:#a9b8cc;--bg:#0a1220;--c:#111d31;--l:#22314a;--b:#2dd4bf}
+*{box-sizing:border-box}body{margin:0;font:16px/1.7 "PingFang SC","Microsoft YaHei",sans-serif;color:var(--t);background:var(--bg)}
+a{color:#0b7f74}header{position:sticky;top:0;z-index:9;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px max(16px,calc((100% - 1000px)/2));background:rgba(246,249,252,.9);border-bottom:1px solid var(--l);backdrop-filter:blur(8px)}
+[data-theme=dark] header{background:rgba(10,18,32,.9)}
+.logo{font-weight:800;color:var(--t);text-decoration:none}.logo span{display:block;font-size:10px;letter-spacing:.15em;color:var(--m);font-weight:500}
+nav{display:flex;align-items:center;gap:2px;flex-wrap:wrap}nav a{padding:6px 9px;border-radius:8px;font-size:14px;color:var(--m);text-decoration:none}nav a.active{color:#0b7f74;background:#0f9d8f1a;font-weight:700}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid #0f9d8f;outline-offset:2px}
+@media(prefers-color-scheme:dark){html:not([data-theme=light]){--t:#e9f0fa;--m:#a9b8cc;--bg:#0a1220;--c:#111d31;--l:#22314a;--b:#2dd4bf}html:not([data-theme=light]) header{background:rgba(10,18,32,.9)}}
+#theme{width:32px;height:32px;margin-left:4px;border:1px solid var(--l);border-radius:50%;background:var(--c);cursor:pointer;font-size:14px}
+.main{width:min(1000px,calc(100% - 32px));margin:auto;padding:34px 0 50px}.eyebrow{color:#0b7f74;font-size:12px;font-weight:700;letter-spacing:.08em}.g{background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent}
+h1{font-size:clamp(1.9rem,5vw,2.6rem);line-height:1.25;margin:8px 0 12px}h2{font-size:1.35rem;margin:34px 0 14px}h3{margin:0 0 8px;font-size:1.06rem}
+.lead{color:var(--m);max-width:46em}.tags{display:flex;gap:7px;flex-wrap:wrap;margin:16px 0}.tag,.btn{display:inline-block;padding:4px 11px;border-radius:999px;font-size:12.5px;font-weight:600;background:#0f9d8f12;border:1px solid #0f9d8f33;color:#0b7f74;text-decoration:none}
+.btn{padding:9px 18px;font-size:14px;background:var(--g);color:#fff;border:0;margin:4px 6px 4px 0}.btn.ghost{background:var(--c);color:var(--t);border:1px solid var(--l)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.card{display:block;background:var(--c);border:1px solid var(--l);border-radius:14px;padding:18px;box-shadow:0 4px 14px #0f1b2d08;min-width:0;text-decoration:none;color:inherit}.card p{margin:0;color:var(--m);font-size:14px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:26px}.stats div{background:var(--c);border:1px solid var(--l);border-radius:12px;padding:14px 18px;font-size:12px;color:var(--m)}.stats b{display:block;font-size:1.7rem;color:var(--b)}
+.record{padding:18px 20px;margin:12px 0;background:var(--c);border:1px solid var(--l);border-left:4px solid var(--b);border-radius:12px}.meta{font-size:12px;color:var(--m);margin:0 0 4px}.record dl{margin:8px 0 0;font-size:14px}.record dt{font-weight:700;color:#0b7f74;margin-top:7px}.record dd{margin:0;color:var(--m)}
+form{background:var(--c);border:1px solid var(--l);border-radius:14px;padding:18px;margin-top:26px}label{display:block;font-size:13px;font-weight:700;margin-bottom:10px}input,textarea{display:block;width:100%;margin-top:4px;padding:8px 10px;border:1px solid var(--l);border-radius:8px;background:#f8fafc;color:var(--t);font:inherit;font-size:14px}textarea{resize:vertical}
+#ok{color:#15803d;font-size:13px;margin-left:8px}.code{background:#0f172a;color:#e2e8f0;border-radius:12px;padding:16px;overflow:auto;font:13px/1.65 Consolas,monospace;white-space:pre;max-width:100%;overflow-x:auto}
+footer{border-top:1px solid var(--l);padding:18px;text-align:center;font-size:12px;color:var(--m)}
+@media(max-width:760px){.grid{grid-template-columns:minmax(0,1fr)}.grid>*{min-width:0}h1{font-size:2rem}nav a{font-size:13px;padding:5px 6px}.logo span{display:none}.main{padding-top:24px}.code{font-size:12px;padding:12px}}
+</style>
+</head>
+<body>
+<header>
+<a class="logo" href="index.html">陈若尘<span>成长主页</span></a>
+<nav>
+<a class="active" href="index.html" aria-current="page">关于我</a><a href="study.html">学习记录</a><a href="projects.html">项目作品</a><a href="contact.html">联系我</a>
+<button id="theme" type="button" aria-label="切换主题">🌙</button>
+</nav>
+</header>
+<main class="main">
+<p class="eyebrow">华中科技大学 · 软件工程（AI 大模型试验班）202604 班</p>
+<h1>你好，我是<span class="g">陈若尘</span></h1>
+<p class="lead">一个刚起步的软件工程学生。遇到不懂的喜欢刨根问底，踩过的坑会记下来，免得再踩。</p>
+<div class="tags"><span class="tag">C 语言</span><span class="tag">OpenCL</span><span class="tag">GPU 性能测试</span><span class="tag">Python 自动化</span><span class="tag">英语精听</span></div>
+<a class="btn" href="study.html">看看学习记录</a><a class="btn ghost" href="projects.html">翻翻项目作品</a>
+
+<h2>关于我</h2>
+<div class="grid">
+<article class="card"><h3>我是谁</h3><p>陈若尘，华中科技大学软件学院软件工程（AI 大模型试验班）202604 班。2026 年秋天第一次认真写 C，从编译器装在哪、PATH 是什么开始，一路踩坑走到能自己配编译环境。</p></article>
+<article class="card"><h3>我在学什么</h3><p>C 语言与软件工程基础，也在接触 GPU 性能测试（C + OpenCL）和 AI 工程；课外每天练英语精听和阅读。学完就补一条记录，现在攒了 8 条，从 Hello World 到 OpenCL 带宽测试都在这。</p></article>
+<article class="card"><h3>我怎么学</h3><p>先跑通，再问为什么，最后写成能回看的记录。没解决的也留着，不假装都会。踩过的坑记在本子上，这个网站就是从本子里抄出来的。</p></article>
+</div>
+<div class="stats"><div><b>8</b>条学习记录</div><div><b>5</b>个动手项目</div><div><b>2</b>个待验证问题</div></div>
+
+<h2>站点地图</h2>
+<div class="grid">
+<a class="card" href="study.html"><h3>学习记录 →</h3><p>8 条按时间排列的记录，每条写清学了什么、遇到什么问题、怎么处理；支持自己新增，存在浏览器本地。</p></a>
+<a class="card" href="projects.html"><h3>项目作品 →</h3><p>5 个动手项目，每个写清解决什么问题、我负责什么、用了什么技术、最大的困难。</p></a>
+<a class="card" href="contact.html"><h3>联系我 →</h3><p>公开联系方式、可以聊的话题，以及这个站点的目录结构与更新计划。</p></a>
+</div>
+
+</main>
+<footer>© 2026 陈若尘 · 华中科技大学 · 原生 HTML / CSS / JavaScript</footer>
+<script>(function(){
+var btn=document.getElementById('theme');
+var saved='';try{saved=localStorage.getItem('theme')||''}catch(e){}
+function isDark(){var s=document.documentElement.dataset.theme;if(s)return s==='dark';return !!(window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches)}
+function paint(){if(!btn)return;btn.textContent=isDark()?'\u2600\ufe0f':'\u{1F319}';btn.setAttribute('aria-pressed',isDark()?'true':'false')}
+if(saved==='dark'||saved==='light'){document.documentElement.dataset.theme=saved}
+paint();
+if(btn)btn.onclick=function(){
+var next=isDark()?'light':'dark';
+document.documentElement.dataset.theme=next;
+try{localStorage.setItem('theme',next)}catch(e){}
+paint();
+};
+})();
+</script>
+</body>
+</html>

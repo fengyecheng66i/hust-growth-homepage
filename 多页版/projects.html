@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="陈若尘的动手项目：GPU 性能测试、成绩管理程序、实验报告自动化等。">
+<title>项目作品 · 陈若尘的成长主页</title>
+<style>
+:root{--b:#0f9d8f;--t:#0f1b2d;--m:#5b6b80;--bg:#f6f9fc;--c:#fff;--l:#e1e8f0;--g:linear-gradient(120deg,#0f9d8f,#2563eb)}
+[data-theme=dark]{--t:#e9f0fa;--m:#a9b8cc;--bg:#0a1220;--c:#111d31;--l:#22314a;--b:#2dd4bf}
+*{box-sizing:border-box}body{margin:0;font:16px/1.7 "PingFang SC","Microsoft YaHei",sans-serif;color:var(--t);background:var(--bg)}
+a{color:#0b7f74}header{position:sticky;top:0;z-index:9;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px max(16px,calc((100% - 1000px)/2));background:rgba(246,249,252,.9);border-bottom:1px solid var(--l);backdrop-filter:blur(8px)}
+[data-theme=dark] header{background:rgba(10,18,32,.9)}
+.logo{font-weight:800;color:var(--t);text-decoration:none}.logo span{display:block;font-size:10px;letter-spacing:.15em;color:var(--m);font-weight:500}
+nav{display:flex;align-items:center;gap:2px;flex-wrap:wrap}nav a{padding:6px 9px;border-radius:8px;font-size:14px;color:var(--m);text-decoration:none}nav a.active{color:#0b7f74;background:#0f9d8f1a;font-weight:700}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid #0f9d8f;outline-offset:2px}
+@media(prefers-color-scheme:dark){html:not([data-theme=light]){--t:#e9f0fa;--m:#a9b8cc;--bg:#0a1220;--c:#111d31;--l:#22314a;--b:#2dd4bf}html:not([data-theme=light]) header{background:rgba(10,18,32,.9)}}
+#theme{width:32px;height:32px;margin-left:4px;border:1px solid var(--l);border-radius:50%;background:var(--c);cursor:pointer;font-size:14px}
+.main{width:min(1000px,calc(100% - 32px));margin:auto;padding:34px 0 50px}.eyebrow{color:#0b7f74;font-size:12px;font-weight:700;letter-spacing:.08em}.g{background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent}
+h1{font-size:clamp(1.9rem,5vw,2.6rem);line-height:1.25;margin:8px 0 12px}h2{font-size:1.35rem;margin:34px 0 14px}h3{margin:0 0 8px;font-size:1.06rem}
+.lead{color:var(--m);max-width:46em}.tags{display:flex;gap:7px;flex-wrap:wrap;margin:16px 0}.tag,.btn{display:inline-block;padding:4px 11px;border-radius:999px;font-size:12.5px;font-weight:600;background:#0f9d8f12;border:1px solid #0f9d8f33;color:#0b7f74;text-decoration:none}
+.btn{padding:9px 18px;font-size:14px;background:var(--g);color:#fff;border:0;margin:4px 6px 4px 0}.btn.ghost{background:var(--c);color:var(--t);border:1px solid var(--l)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.card{display:block;background:var(--c);border:1px solid var(--l);border-radius:14px;padding:18px;box-shadow:0 4px 14px #0f1b2d08;min-width:0;text-decoration:none;color:inherit}.card p{margin:0;color:var(--m);font-size:14px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:26px}.stats div{background:var(--c);border:1px solid var(--l);border-radius:12px;padding:14px 18px;font-size:12px;color:var(--m)}.stats b{display:block;font-size:1.7rem;color:var(--b)}
+.record{padding:18px 20px;margin:12px 0;background:var(--c);border:1px solid var(--l);border-left:4px solid var(--b);border-radius:12px}.meta{font-size:12px;color:var(--m);margin:0 0 4px}.record dl{margin:8px 0 0;font-size:14px}.record dt{font-weight:700;color:#0b7f74;margin-top:7px}.record dd{margin:0;color:var(--m)}
+form{background:var(--c);border:1px solid var(--l);border-radius:14px;padding:18px;margin-top:26px}label{display:block;font-size:13px;font-weight:700;margin-bottom:10px}input,textarea{display:block;width:100%;margin-top:4px;padding:8px 10px;border:1px solid var(--l);border-radius:8px;background:#f8fafc;color:var(--t);font:inherit;font-size:14px}textarea{resize:vertical}
+#ok{color:#15803d;font-size:13px;margin-left:8px}.code{background:#0f172a;color:#e2e8f0;border-radius:12px;padding:16px;overflow:auto;font:13px/1.65 Consolas,monospace;white-space:pre;max-width:100%;overflow-x:auto}
+footer{border-top:1px solid var(--l);padding:18px;text-align:center;font-size:12px;color:var(--m)}
+@media(max-width:760px){.grid{grid-template-columns:minmax(0,1fr)}.grid>*{min-width:0}h1{font-size:2rem}nav a{font-size:13px;padding:5px 6px}.logo span{display:none}.main{padding-top:24px}.code{font-size:12px;padding:12px}}
+</style>
+</head>
+<body>
+<header>
+<a class="logo" href="index.html">陈若尘<span>成长主页</span></a>
+<nav>
+<a href="index.html">关于我</a><a href="study.html">学习记录</a><a class="active" href="projects.html" aria-current="page">项目作品</a><a href="contact.html">联系我</a>
+<button id="theme" type="button" aria-label="切换主题">🌙</button>
+</nav>
+</header>
+<main class="main">
+<h1>项目作品</h1>
+<p class="lead">每个项目写清解决什么问题、我负责什么、用了什么技术、最大的困难。</p>
+<div class="grid">
+<article class="card"><h3>GPU 性能测试工具</h3><p><b>问题：</b>测显存读写带宽，判断不同 work size 下结果是否可信。<br><b>我负责：</b>实验设计、kernel 编写、计时和结果核对。<br><b>技术：</b>C + OpenCL。<br><b>困难：</b>把 CUDA 的 grid 当成 global work size，测出 92487 GB/s；按总工作项重算后回到 515 GB/s，计时方式还在验证。</p></article>
+<article class="card"><h3>成绩管理程序</h3><p><b>问题：</b>管理学号和成绩，支持录入、排序和按学号查询。<br><b>我负责：</b>全部代码和测试。<br><b>技术：</b>C89、二维数组、选择排序、二分查找。<br><b>困难：</b>二分边界写成 low ≥ high 漏掉最后一个元素，改成 low ≤ high 才对。</p></article>
+<article class="card"><h3>实验报告自动化</h3><p><b>问题：</b>实验报告格式固定，手动排版慢还容易漏。<br><b>我负责：</b>脚本设计、模板格式对照、代码一致性校验。<br><b>技术：</b>Python + python-docx，导出 PDF。<br><b>困难：</b>GBK 编码、WPS 占用文件、目录页码要从 PDF 回填。</p></article>
+<article class="card"><h3>“我和新时代的故事”演讲 PPT</h3><p><b>问题：</b>18 页、10 分钟演讲的版式和动效。<br><b>我负责：</b>讲稿、结构、python-pptx 脚本。<br><b>技术：</b>Python + OOXML。<br><b>困难：</b>渐变单位、transition 顺序、Morph 同名，改完还要按 F5 手测。</p></article>
+<article class="card"><h3>校园失物招领需求分析</h3><p><b>问题：</b>定义发布、搜索、认领、审核的需求。<br><b>我负责：</b>角色、功能、验收标准。<br><b>技术：</b>需求文档。<br><b>困难：</b>“能搜索”不是验收标准，要写清输入、响应时间和筛选维度。</p></article>
+</div>
+
+<h2>技能展示</h2>
+<p class="lead">不写程度形容词，只写我用它做过什么、能拿出什么东西。</p>
+<div class="grid">
+<article class="card"><h3>C 语言</h3><p>数组、字符串、多文件工程、宏与条件编译、assert、选择排序和二分查找。证据：实验 5-2 的成绩管理程序——二维数组存学号和成绩，排序后按学号二分查询，全部测试用例都跑通；下面就是里面按学号查人的函数。</p><pre class="code" id="c-code"></pre></article>
+<article class="card"><h3>OpenCL / GPU</h3><p>kernel、global/local work size、event 计时、带宽换算。证据：把 92487 GB/s 定位到 work size 误用，重算后回到 515 GB/s。</p><pre class="code">size_t items = global_size;
+double bytes = 2.0 * items * sizeof(float);
+printf("%.2f GB/s", bytes / (ms / 1000.0) / 1e9);</pre></article>
+<article class="card"><h3>Python 自动化</h3><p>python-docx 生成实验报告，python-pptx 做 18 页演讲 PPT。证据：实验 4、5-2 的报告和演讲 PPT。</p><pre class="code">def replace_in_paragraph(p, old, new):
+    for run in p.runs:
+        if old in run.text:
+            run.text = run.text.replace(old, new)</pre></article>
+<article class="card"><h3>英语精听</h3><p>每天三篇阅读加选择题，记录错因并用句意改写补。证据：连续两次 9/9 后主动升难度，Day 04 掉到 9/12 并复盘。</p></article>
+<article class="card"><h3>写作与表达</h3><p>写过课程论文和演讲稿，先确定“谁在说、说给谁”。证据：《长安是被讲出来的》课程论文、“我和新时代的故事”演讲。</p></article>
+<article class="card"><h3>工具链与调试</h3><p>w64devkit / GCC、VS Code、PowerShell、Git；遇到 PATH、编码、文件占用会先定位再改。证据：独立配置编译环境。</p></article>
+</div>
+
+<h2>站点结构与更新计划</h2>
+<div class="card"><p><b>文件结构：</b>index.html（关于我）、study.html（学习记录）、projects.html（项目作品）、contact.html（联系我），四个文件用普通链接互相跳转，另有 assets/css/style.css 和 assets/js/main.js 提供公共样式与主题切换；纯原生 HTML/CSS/JS，无框架、无构建工具。<br><b>怎么打开：</b>双击 index.html 即可，也可以用任意静态服务器；上 GitHub Pages 后直接访问仓库域名。<br><b>新增一个页面的步骤：</b>复制现有页面，改 &lt;title&gt; 和 &lt;main&gt; 里的内容，再把导航里的链接加进去。<br><b>后续更新：</b>补充 OpenCL 计时与多轮平均结果；把实验报告自动化整理成模板；完成校园失物招领需求文档；每次学完新东西新增一条记录。</p></div>
+
+<h2>继续看</h2>
+<div class="grid">
+<a class="card" href="contact.html"><h3>联系方式与站点说明 →</h3><p>公开联系方式、可聊的话题，以及部署与更新说明。</p></a>
+<a class="card" href="study.html"><h3>学习记录 →</h3><p>支撑上面这些项目的原始记录。</p></a>
+<a class="card" href="index.html"><h3>回到关于我 →</h3><p>我是谁、在学什么、怎么学。</p></a>
+</div>
+
+</main>
+<footer>© 2026 陈若尘 · 华中科技大学 · 原生 HTML / CSS / JavaScript</footer>
+<script>(function(){
+var btn=document.getElementById('theme');
+var saved='';try{saved=localStorage.getItem('theme')||''}catch(e){}
+function isDark(){var s=document.documentElement.dataset.theme;if(s)return s==='dark';return !!(window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches)}
+function paint(){if(!btn)return;btn.textContent=isDark()?'\u2600\ufe0f':'\u{1F319}';btn.setAttribute('aria-pressed',isDark()?'true':'false')}
+if(saved==='dark'||saved==='light'){document.documentElement.dataset.theme=saved}
+paint();
+if(btn)btn.onclick=function(){
+var next=isDark()?'light':'dark';
+document.documentElement.dataset.theme=next;
+try{localStorage.setItem('theme',next)}catch(e){}
+paint();
+};
+})();
+</script>
+<script>(function(){
+var out=[];
+out.push('#include ' + '<' + 'string.h>');
+out.push('');
+out.push('int find(char id[][12], int n, const char *target)');
+out.push('{');
+out.push('    int low = 0, high = n - 1;');
+out.push('    while (low <= high) {');
+out.push('        int mid = low + (high - low) / 2;');
+out.push('        int cmp = strcmp(id[mid], target);');
+out.push('        if (cmp == 0) return mid;');
+out.push('        if (cmp < 0) low = mid + 1;');
+out.push('        else high = mid - 1;');
+out.push('    }');
+out.push('    return -1;');
+out.push('}');
+var c=document.getElementById('c-code');
+if(c){c.textContent=out.join(String.fromCharCode(10));}
+})();
+</script>
+</body>
+</html>

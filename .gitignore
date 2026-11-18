@@ -1,0 +1,19 @@
+# 系统与编辑器
+Thumbs.db
+Desktop.ini
+.DS_Store
+.vscode/
+.idea/
+
+# 备份与临时文件
+*.bak
+*.bak.html
+*.tmp
+~$*
+
+# 打包产物（源文件已在版本库中）
+*.zip
+
+# 依赖与日志
+node_modules/
+*.log
